@@ -1,0 +1,38 @@
+{
+  "transmute": {
+    "category": "item",
+    "sounds": [
+      {
+        "name": "equivalentexchange:transmute",
+        "stream": false
+      }
+    ]
+  },
+  "charge": {
+    "category": "item",
+    "sounds": [
+      {
+        "name": "equivalentexchange:charge",
+        "stream": false
+      }
+    ]
+  },
+  "uncharge": {
+    "category": "item",
+    "sounds": [
+      {
+        "name": "equivalentexchange:uncharge",
+        "stream": false
+      }
+    ]
+  },
+  "heal": {
+    "category": "item",
+    "sounds": [
+      {
+        "name": "equivalentexchange:heal",
+        "stream": false
+      }
+    ]
+  }
+}

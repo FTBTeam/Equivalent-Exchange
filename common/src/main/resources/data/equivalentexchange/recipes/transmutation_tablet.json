@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DSD",
+    "STS",
+    "DSD"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "D": {
+      "item": "equivalentexchange:dark_matter_block"
+    },
+    "T": {
+      "item": "equivalentexchange:transmutation_table"
+    }
+  },
+  "result": {
+    "item": "equivalentexchange:transmutation_tablet"
+  }
+}

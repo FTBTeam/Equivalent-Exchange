@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "R": {
+      "item": "equivalentexchange:red_matter"
+    },
+    "S": {
+      "item": "equivalentexchange:dm_shears"
+    }
+  },
+  "pattern": [
+    " R",
+    "S "
+  ],
+  "result": {
+    "item": "equivalentexchange:rm_shears"
+  }
+}

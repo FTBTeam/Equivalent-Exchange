@@ -1,0 +1,18 @@
+// 1.20.4	2024-06-07T17:26:51.621263	Equivalent Exchange 4/Block Loot Tables
+f8a805a7812573b195b94ab54e0789c895b7f77a ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\basic_collector.json
+7dd8fcab101cc63a21c319e1ecfae7529e8e92b8 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\mobius_fuel_block.json
+40f8f863e6e1cbc2fa3751190d54ce86b28d3bef ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\alchemical_coal_block.json
+51b0dd976f8a757df2c08ab1cea95ee0075bcf2c ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\alchemical_chest.json
+1c953830cf5a5d1d7eeb0672807db29cbb644d3d ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\condenser.json
+2ba6034994e8fce54f8cc3c833506fb1456b15f7 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\aeternalis_fuel_block.json
+82ec05b4a770e8f48b5976b269f7dbc21fe3e7d7 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\dark_matter_relay.json
+e466f9a132c413f139aa40508fe9630c0b9b2c14 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\red_matter_relay.json
+01635ea0d26a3a8e6214ca8d05577b8447b8babd ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\nova_catalyst.json
+d5708321285dabb23f4ca071bb136b366a13cd03 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\transmutation_table.json
+4f9d945ded1063b984fbc40bec56d859159a9369 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\dm_pedestal.json
+f74919b43d114c10c939b297c6bba19adc328674 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\dark_matter_collector.json
+396630ce697d88eedaa4e3c95ae8be18480303e6 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\dark_matter_block.json
+52e083b85eeb94cda17ae12ac101f302aa5f29cf ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\red_matter_block.json
+0ebab356eb8673c52414ded68461cd4470f66abe ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\basic_relay.json
+2bf06996c676cc7539df024f070c5d96241ed52b ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\nova_cataclysm.json
+e4bc99c681f505177ca6d6b1c530d8c44b483c1f ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\red_matter_collector.json

@@ -1,0 +1,20 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "equivalentexchange:item/soul_stone_off"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "equivalentexchange:active": 0.0
+      },
+      "model": "equivalentexchange:item/soul_stone_off"
+    },
+    {
+      "predicate": {
+        "equivalentexchange:active": 1.0
+      },
+      "model": "equivalentexchange:item/soul_stone_on"
+    }
+  ]
+}

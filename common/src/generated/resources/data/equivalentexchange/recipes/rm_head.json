@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "equivalentexchange:dm_head"
+    },
+    "M": {
+      "item": "equivalentexchange:red_matter"
+    }
+  },
+  "pattern": [
+    "MMM",
+    "MDM"
+  ],
+  "result": {
+    "item": "equivalentexchange:rm_head"
+  }
+}

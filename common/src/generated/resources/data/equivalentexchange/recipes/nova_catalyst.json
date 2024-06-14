@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    {
+      "item": "minecraft:tnt"
+    },
+    {
+      "item": "equivalentexchange:mobius_fuel"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "equivalentexchange:nova_catalyst"
+  }
+}

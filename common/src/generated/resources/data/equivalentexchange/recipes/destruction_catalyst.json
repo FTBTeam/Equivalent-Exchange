@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "F": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "M": {
+      "item": "equivalentexchange:mobius_fuel"
+    },
+    "N": {
+      "item": "equivalentexchange:nova_catalyst"
+    }
+  },
+  "pattern": [
+    "NMN",
+    "MFM",
+    "NMN"
+  ],
+  "result": {
+    "item": "equivalentexchange:destruction_catalyst"
+  }
+}

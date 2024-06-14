@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "equivalentexchange:alchemical_chest",
+    "equivalentexchange:transmutation_table",
+    "equivalentexchange:condenser",
+    "equivalentexchange:alchemical_coal_block",
+    "equivalentexchange:mobius_fuel_block",
+    "equivalentexchange:aeternalis_fuel_block",
+    "equivalentexchange:nova_catalyst",
+    "equivalentexchange:nova_cataclysm",
+    "equivalentexchange:dm_pedestal",
+    "equivalentexchange:basic_collector",
+    "equivalentexchange:dark_matter_collector",
+    "equivalentexchange:red_matter_collector",
+    "equivalentexchange:basic_relay",
+    "equivalentexchange:dark_matter_relay",
+    "equivalentexchange:red_matter_relay",
+    "equivalentexchange:dark_matter_block",
+    "equivalentexchange:red_matter_block"
+  ]
+}

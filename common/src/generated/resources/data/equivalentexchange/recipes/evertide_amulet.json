@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "equivalentexchange:dark_matter"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "DDD",
+    "WWW"
+  ],
+  "result": {
+    "item": "equivalentexchange:evertide_amulet"
+  }
+}

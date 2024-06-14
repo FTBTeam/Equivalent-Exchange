@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "R": {
+      "item": "equivalentexchange:red_matter"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "RLR",
+    "SSS"
+  ],
+  "result": {
+    "item": "equivalentexchange:body_stone"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "equivalentexchange:alchemical_chest"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "pattern": [
+    "ODO",
+    "DCD",
+    "ODO"
+  ],
+  "result": {
+    "item": "equivalentexchange:condenser"
+  }
+}

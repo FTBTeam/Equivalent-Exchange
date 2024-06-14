@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:diamond_block"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "G": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "pattern": [
+    "GDG",
+    "GFG",
+    "GGG"
+  ],
+  "result": {
+    "item": "equivalentexchange:basic_relay"
+  }
+}

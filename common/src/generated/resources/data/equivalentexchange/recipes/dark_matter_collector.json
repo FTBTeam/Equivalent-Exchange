@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "equivalentexchange:dark_matter_block"
+    },
+    "F": {
+      "item": "equivalentexchange:basic_collector"
+    },
+    "G": {
+      "item": "minecraft:glowstone"
+    }
+  },
+  "pattern": [
+    "GDG",
+    "GFG",
+    "GGG"
+  ],
+  "result": {
+    "item": "equivalentexchange:dark_matter_collector"
+  }
+}

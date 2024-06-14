@@ -1,0 +1,21 @@
+{
+  "values": {
+    "#forge:seeds/wheat": 16,
+    "#forge:seeds/beetroot": 16,
+    "#forge:crops/wheat": 24,
+    "#forge:crops/nether_wart": 24,
+    "#forge:crops/carrot": 64,
+    "#forge:crops/beetroot": 64,
+    "#forge:crops/potato": 64,
+    "#forge:gems/quartz": 256,
+    "#forge:gems/emerald": 16384,
+    "#forge:nether_stars": 139264,
+    "#forge:gems/diamond": 8192,
+    "#forge:dusts/redstone": 64,
+    "#forge:dusts/glowstone": 384,
+    "#forge:ingots/gold": 2048,
+    "#forge:ingots/iron": 256,
+    "#forge:ingots/copper": 128,
+    "#forge:slimeballs": 32
+  }
+}

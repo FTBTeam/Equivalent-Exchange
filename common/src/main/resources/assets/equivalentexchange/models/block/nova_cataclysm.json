@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "particle": "equivalentexchange:block/explosives/top",
+    "down": "equivalentexchange:block/explosives/bottom",
+    "up": "equivalentexchange:block/explosives/top",
+    "north": "equivalentexchange:block/explosives/nova1_side",
+    "east": "equivalentexchange:block/explosives/nova1_side",
+    "south": "equivalentexchange:block/explosives/nova1_side",
+    "west": "equivalentexchange:block/explosives/nova1_side"
+  }
+}

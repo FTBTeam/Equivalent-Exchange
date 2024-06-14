@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "M": {
+      "item": "equivalentexchange:dark_matter"
+    }
+  },
+  "pattern": [
+    "MMM",
+    " D ",
+    " D "
+  ],
+  "result": {
+    "item": "equivalentexchange:dm_pickaxe"
+  }
+}

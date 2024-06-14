@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "equivalentexchange:red_matter_block"
+    },
+    "F": {
+      "item": "equivalentexchange:dark_matter_relay"
+    },
+    "G": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "pattern": [
+    "GDG",
+    "GFG",
+    "GGG"
+  ],
+  "result": {
+    "item": "equivalentexchange:red_matter_relay"
+  }
+}

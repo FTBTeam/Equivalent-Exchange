@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "equivalentexchange:block/basic_collector"
+    },
+    "facing=south": {
+      "model": "equivalentexchange:block/basic_collector",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "equivalentexchange:block/basic_collector",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "equivalentexchange:block/basic_collector",
+      "y": 90
+    }
+  }
+}

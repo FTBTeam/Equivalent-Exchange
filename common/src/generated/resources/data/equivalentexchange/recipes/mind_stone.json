@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:book"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "R": {
+      "item": "equivalentexchange:red_matter"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "RLR",
+    "BBB"
+  ],
+  "result": {
+    "item": "equivalentexchange:mind_stone"
+  }
+}

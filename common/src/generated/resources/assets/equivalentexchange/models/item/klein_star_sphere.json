@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "equivalentexchange:item/klein_star_sphere"
+  }
+}

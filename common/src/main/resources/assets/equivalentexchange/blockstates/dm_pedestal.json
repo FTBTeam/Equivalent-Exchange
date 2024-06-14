@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "equivalentexchange:block/dm_pedestal"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "equivalentexchange:alchemical_coal"
+    },
+    {
+      "item": "equivalentexchange:alchemical_coal"
+    },
+    {
+      "item": "equivalentexchange:alchemical_coal"
+    },
+    {
+      "item": "equivalentexchange:alchemical_coal"
+    },
+    {
+      "item": "equivalentexchange:philosophers_stone"
+    }
+  ],
+  "result": {
+    "item": "equivalentexchange:mobius_fuel"
+  }
+}

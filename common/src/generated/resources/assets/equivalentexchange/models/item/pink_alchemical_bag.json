@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "equivalentexchange:item/pink_alchemical_bag"
+  }
+}

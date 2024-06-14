@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "equivalentexchange:dm_feet"
+    },
+    "M": {
+      "item": "equivalentexchange:red_matter"
+    }
+  },
+  "pattern": [
+    "MDM",
+    "M M"
+  ],
+  "result": {
+    "item": "equivalentexchange:rm_feet"
+  }
+}

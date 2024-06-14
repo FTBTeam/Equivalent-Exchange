@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "R": {
+      "item": "equivalentexchange:red_matter"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "RLR",
+    "GGG"
+  ],
+  "result": {
+    "item": "equivalentexchange:soul_stone"
+  }
+}

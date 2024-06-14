@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "equivalentexchange:dm_chest"
+    },
+    "M": {
+      "item": "equivalentexchange:red_matter"
+    }
+  },
+  "pattern": [
+    "MDM",
+    "MMM",
+    "MMM"
+  ],
+  "result": {
+    "item": "equivalentexchange:rm_chest"
+  }
+}

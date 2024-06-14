@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "equivalentexchange:alchemical_chest"
+    },
+    "D": {
+      "item": "equivalentexchange:covalence_dust_high"
+    },
+    "W": {
+      "item": "minecraft:cyan_wool"
+    }
+  },
+  "pattern": [
+    "DDD",
+    "WCW",
+    "WWW"
+  ],
+  "result": {
+    "item": "equivalentexchange:cyan_alchemical_bag"
+  }
+}

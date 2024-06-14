@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "equivalentexchange:covalence_dust_low"
+    },
+    "c": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "###",
+    "#c#",
+    "###"
+  ],
+  "result": {
+    "item": "equivalentexchange:low_diving_rod"
+  }
+}

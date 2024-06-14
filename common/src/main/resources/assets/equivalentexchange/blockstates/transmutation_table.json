@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "equivalentexchange:block/transmutation_table"
+    },
+    "facing=south": {
+      "model": "equivalentexchange:block/transmutation_table",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "equivalentexchange:block/transmutation_table",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "equivalentexchange:block/transmutation_table",
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:iron_ingot"
+    },
+    "c": {
+      "item": "minecraft:lava_bucket"
+    }
+  },
+  "pattern": [
+    "###",
+    "#c#",
+    "###"
+  ],
+  "result": {
+    "item": "equivalentexchange:iron_band"
+  }
+}

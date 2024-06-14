@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "equivalentexchange:covalence_dust_low",
+    "equivalentexchange:covalence_dust_medium",
+    "equivalentexchange:covalence_dust_high"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "equivalentexchange:dm_axe"
+    },
+    "M": {
+      "item": "equivalentexchange:dark_matter"
+    },
+    "R": {
+      "item": "equivalentexchange:red_matter"
+    }
+  },
+  "pattern": [
+    "RR",
+    "RA",
+    " M"
+  ],
+  "result": {
+    "item": "equivalentexchange:rm_axe"
+  }
+}

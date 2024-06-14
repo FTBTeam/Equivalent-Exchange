@@ -1,0 +1,17 @@
+{
+  "values": {
+    "minecraft:wheat_seeds": 16,
+    "minecraft:beetroot_seeds": 16,
+    "minecraft:wheat": 24,
+    "minecraft:nether_wart": 24,
+    "minecraft:carrot": 64,
+    "minecraft:beetroot": 64,
+    "minecraft:potato": 64,
+    "#c:quartz": 256,
+    "#c:emerald": 16384,
+    "minecraft:nether_star": 139264,
+    "#c:diamonds": 8192,
+    "#c:redstone_dusts": 64,
+    "minecraft:glowstone_dust": 384
+  }
+}

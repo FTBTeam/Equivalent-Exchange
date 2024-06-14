@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "minecraft:glowstone"
+    }
+  },
+  "pattern": [
+    "SRS",
+    "RDR",
+    "SRS"
+  ],
+  "result": {
+    "item": "equivalentexchange:philosophers_stone"
+  }
+}

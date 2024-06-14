@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "item": "equivalentexchange:dark_matter"
+    },
+    "P": {
+      "item": "equivalentexchange:dm_pickaxe"
+    },
+    "R": {
+      "item": "equivalentexchange:red_matter"
+    }
+  },
+  "pattern": [
+    "RRR",
+    " P ",
+    " M "
+  ],
+  "result": {
+    "item": "equivalentexchange:rm_pickaxe"
+  }
+}

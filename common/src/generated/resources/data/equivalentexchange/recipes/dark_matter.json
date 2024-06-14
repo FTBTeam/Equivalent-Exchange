@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "equivalentexchange:aeternalis_fuel"
+    },
+    "c": {
+      "item": "minecraft:diamond_block"
+    }
+  },
+  "pattern": [
+    "###",
+    "#c#",
+    "###"
+  ],
+  "result": {
+    "item": "equivalentexchange:dark_matter"
+  }
+}

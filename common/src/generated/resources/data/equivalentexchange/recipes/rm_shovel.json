@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "item": "equivalentexchange:dark_matter"
+    },
+    "R": {
+      "item": "equivalentexchange:red_matter"
+    },
+    "S": {
+      "item": "equivalentexchange:dm_shovel"
+    }
+  },
+  "pattern": [
+    "R",
+    "S",
+    "M"
+  ],
+  "result": {
+    "item": "equivalentexchange:rm_shovel"
+  }
+}

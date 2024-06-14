@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "particle": "equivalentexchange:block/relay/top_2",
+    "down": "equivalentexchange:block/relay/other",
+    "up": "equivalentexchange:block/relay/top_2",
+    "north": "equivalentexchange:block/relay/front",
+    "east": "equivalentexchange:block/relay/other",
+    "south": "equivalentexchange:block/relay/other",
+    "west": "equivalentexchange:block/relay/other"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "H": {
+      "item": "equivalentexchange:dm_hoe"
+    },
+    "M": {
+      "item": "equivalentexchange:dark_matter"
+    },
+    "R": {
+      "item": "equivalentexchange:red_matter"
+    }
+  },
+  "pattern": [
+    "RR",
+    " H",
+    " M"
+  ],
+  "result": {
+    "item": "equivalentexchange:rm_hoe"
+  }
+}

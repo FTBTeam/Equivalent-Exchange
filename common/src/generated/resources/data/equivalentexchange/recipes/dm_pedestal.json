@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "equivalentexchange:dark_matter_block"
+    },
+    "R": {
+      "item": "equivalentexchange:red_matter_block"
+    }
+  },
+  "pattern": [
+    "RDR",
+    "RDR",
+    "DDD"
+  ],
+  "result": {
+    "item": "equivalentexchange:dm_pedestal"
+  }
+}

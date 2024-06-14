@@ -1,0 +1,14 @@
+pluginManagement {
+    repositories {
+        maven { url "https://maven.creeperhost.net" }
+        maven { url "https://maven.fabricmc.net/" }
+        maven { url "https://maven.architectury.dev/" }
+        gradlePluginPortal()
+    }
+}
+
+include("common")
+include("fabric")
+include("neoforge")
+
+rootProject.name = "equivalent-exchange"

@@ -1,0 +1,20 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "equivalentexchange:item/time_watch_off"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "equivalentexchange:active": 0.0
+      },
+      "model": "equivalentexchange:item/time_watch_off"
+    },
+    {
+      "predicate": {
+        "equivalentexchange:active": 1.0
+      },
+      "model": "equivalentexchange:item/time_watch_on"
+    }
+  ]
+}

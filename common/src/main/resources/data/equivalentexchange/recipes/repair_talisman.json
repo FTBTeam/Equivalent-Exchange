@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LMH",
+    "SPS",
+    "HML"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "L": {
+      "item": "equivalentexchange:covalence_dust_low"
+    },
+    "M": {
+      "item": "equivalentexchange:covalence_dust_medium"
+    },
+    "H": {
+      "item": "equivalentexchange:covalence_dust_high"
+    }
+  },
+  "result": {
+    "item": "equivalentexchange:repair_talisman"
+  }
+}

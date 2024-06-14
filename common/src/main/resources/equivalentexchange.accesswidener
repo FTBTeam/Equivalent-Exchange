@@ -1,0 +1,6 @@
+accessWidener   v2  named
+
+accessible field net/minecraft/world/item/Item craftingRemainingItem Lnet/minecraft/world/item/Item;
+mutable field net/minecraft/world/item/Item craftingRemainingItem Lnet/minecraft/world/item/Item;
+
+accessible method net/minecraft/world/entity/item/PrimedTnt explode ()V

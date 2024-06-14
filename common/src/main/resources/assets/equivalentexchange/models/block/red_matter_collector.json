@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "particle": "equivalentexchange:block/collector/top_3",
+    "down": "equivalentexchange:block/collector/other",
+    "up": "equivalentexchange:block/collector/top_3",
+    "north": "equivalentexchange:block/collector/front",
+    "east": "equivalentexchange:block/collector/other",
+    "south": "equivalentexchange:block/collector/other",
+    "west": "equivalentexchange:block/collector/other"
+  }
+}

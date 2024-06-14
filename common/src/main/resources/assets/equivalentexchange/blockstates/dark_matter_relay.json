@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "equivalentexchange:block/dark_matter_relay"
+    },
+    "facing=south": {
+      "model": "equivalentexchange:block/dark_matter_relay",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "equivalentexchange:block/dark_matter_relay",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "equivalentexchange:block/dark_matter_relay",
+      "y": 90
+    }
+  }
+}
