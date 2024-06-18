@@ -41,17 +41,20 @@ public class BlockEntityPedestal extends PolyBlockEntity implements PolyInventor
     int klienStarSlot = 1;
     public void tick()
     {
-        if(level.getBlockState(getBlockPos()).getValue(BlockDarkMatterPedestal.IS_ACTIVE))
+        if(level.getBlockState(getBlockPos()).getBlock() instanceof BlockDarkMatterPedestal)
         {
-            if (!getContainer(Direction.UP).getItem(targetSlot).isEmpty())
+            if (level.getBlockState(getBlockPos()).getValue(BlockDarkMatterPedestal.IS_ACTIVE))
             {
-                ItemStack targetStack = getContainer(Direction.UP).getItem(targetSlot);
-                if (targetStack.getItem() instanceof IPedestalItem iPedestalItem)
+                if (!getContainer(Direction.UP).getItem(targetSlot).isEmpty())
                 {
-                    ItemStack klienStarStack = getContainer(Direction.UP).getItem(klienStarSlot);
-                    iPedestalItem.pedestalTick(level, getBlockPos(), targetStack, klienStarStack);
+                    ItemStack targetStack = getContainer(Direction.UP).getItem(targetSlot);
+                    if (targetStack.getItem() instanceof IPedestalItem iPedestalItem)
+                    {
+                        ItemStack klienStarStack = getContainer(Direction.UP).getItem(klienStarSlot);
+                        iPedestalItem.pedestalTick(level, getBlockPos(), targetStack, klienStarStack);
+                    }
+                    spawnParticleTypes();
                 }
-                spawnParticleTypes();
             }
         }
     }
