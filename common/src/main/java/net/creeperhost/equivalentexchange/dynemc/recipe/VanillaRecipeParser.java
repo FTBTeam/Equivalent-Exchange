@@ -52,7 +52,8 @@ public class VanillaRecipeParser implements IEmcRecipeParser
             return;
         }
 
-        EquivalentExchange.LOGGER.info("Recipe Group {} {}", recipe.getGroup(), recipe.getType().toString());
+        if(EquivalentExchange.CONFIG_DATA.DEBUG_PRINT)
+            EquivalentExchange.LOGGER.info("Recipe Group {} {}", recipe.getGroup(), recipe.getType().toString());
 
         List<ItemStack> validRecipeItems = new ArrayList<>();
 
@@ -77,7 +78,8 @@ public class VanillaRecipeParser implements IEmcRecipeParser
         {
             if(validRecipeItems.size() < recipe.getIngredients().stream().filter(ingredient -> !ingredient.isEmpty()).count())
             {
-                EquivalentExchange.LOGGER.info("Unable to set emc value on {} as validRecipeItems has less items than recipe size", output.getDisplayName().getString());
+                if(EquivalentExchange.CONFIG_DATA.DEBUG_PRINT)
+                    EquivalentExchange.LOGGER.info("Unable to set emc value on {} as validRecipeItems has less items than recipe size", output.getDisplayName().getString());
                 return;
             }
             double total = math(validRecipeItems);

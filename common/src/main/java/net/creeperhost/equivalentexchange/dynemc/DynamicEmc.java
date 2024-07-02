@@ -73,12 +73,10 @@ public class DynamicEmc
                                             if (EquivalentExchange.CONFIG_DATA.DEBUG_PRINT)
                                                 EquivalentExchange.LOGGER.error("Unable to find parser for {} Skipping", recipeType.toString());
                                         } else {
-                                            EquivalentExchange.LOGGER.info("Start set values for RecipeType: {}", resourceLocation);
+                                            if(EquivalentExchange.CONFIG_DATA.DEBUG_PRINT)
+                                                EquivalentExchange.LOGGER.info("Start set values for RecipeType: {}", resourceLocation);
                                             Set<RecipeHolder<?>> recipes = findRecipesByType(recipeType, recipeManager);
-                                            recipes.forEach(recipe ->
-                                            {
-                                                parser.setValueForRecipe(recipe.value(), registryAccess);
-                                            });
+                                            recipes.forEach(recipe -> parser.setValueForRecipe(recipe.value(), registryAccess));
                                         }
                                     }
                                 });
