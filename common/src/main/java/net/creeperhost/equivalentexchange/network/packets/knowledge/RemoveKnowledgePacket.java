@@ -27,7 +27,7 @@ public class RemoveKnowledgePacket extends BaseS2CMessage
     @Override
     public MessageType getType()
     {
-        return PacketHandler.KNOWLEDGE_ADD;
+        return PacketHandler.KNOWLEDGE_REMOVE;
     }
 
     @Override
