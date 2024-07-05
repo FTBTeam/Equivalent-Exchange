@@ -113,6 +113,10 @@ public class TransmutationInventory implements Container
                 double value = EquivalentExchangeAPI.getStorageHandler().getEmcValueFor(player) - inserted;
                 EquivalentExchangeAPI.getStorageHandler().setEmcValueFor(player, value);
             }
+            else if(EquivalentExchangeAPI.hasEmcValue(itemStack))
+            {
+                EquivalentExchangeAPI.getKnowledgeHandler().addKnowledge(player, itemStack);
+            }
         }
         this.items.set(i, itemStack);
         setChanged();

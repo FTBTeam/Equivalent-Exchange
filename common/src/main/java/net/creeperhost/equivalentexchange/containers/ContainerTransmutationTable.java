@@ -1,7 +1,6 @@
 package net.creeperhost.equivalentexchange.containers;
 
 import net.creeperhost.equivalentexchange.api.EquivalentExchangeAPI;
-import net.creeperhost.equivalentexchange.api.events.KnowledgeChangedEvent;
 import net.creeperhost.equivalentexchange.containers.prefab.ContainerBase;
 import net.creeperhost.equivalentexchange.containers.slots.EmcSlot;
 import net.creeperhost.equivalentexchange.containers.slots.SlotOutput;
