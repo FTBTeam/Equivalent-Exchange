@@ -92,6 +92,7 @@ public class TransmutationInventory implements Container
                         value += kleinStar.getKleinStarStored(itemStack);
                     }
                     EquivalentExchangeAPI.getStorageHandler().addEmcFor(player, value);
+                    updateInventory();
                     return;
                 }
                 //don't setItem as the item has been destroyed and turned into emc
@@ -100,6 +101,7 @@ public class TransmutationInventory implements Container
         else if(i == 1)
         {
             EquivalentExchangeAPI.getKnowledgeHandler().removeKnowledge(player, getItem(i));
+            updateInventory();
         }
         else if(i >= 3 && i <= 10)
         {
@@ -115,10 +117,12 @@ public class TransmutationInventory implements Container
                 kleinStar.setKleinStarEmc(itemStack, inserted);
                 double value = EquivalentExchangeAPI.getStorageHandler().getEmcValueFor(player) - inserted;
                 EquivalentExchangeAPI.getStorageHandler().setEmcValueFor(player, value);
+                updateInventory();
             }
             else if(EquivalentExchangeAPI.hasEmcValue(itemStack))
             {
                 EquivalentExchangeAPI.getKnowledgeHandler().addKnowledge(player, itemStack);
+                updateInventory();
             }
         }
         this.items.set(i, itemStack);
