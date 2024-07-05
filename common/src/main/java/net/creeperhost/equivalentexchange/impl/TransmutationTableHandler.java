@@ -40,21 +40,27 @@ public class TransmutationTableHandler
         INVENTORIES.put(player.getUUID().toString(), transmutationInventory);
     }
 
-    public static NonNullList<ItemStack> getTransmutationContent(String search, Player player)
+    public static NonNullList<ItemStack> getTransmutationContent(int page, String search, Player player)
     {
         NonNullList<ItemStack> itemStacks = NonNullList.withSize(16, ItemStack.EMPTY);
         List<ItemStack> knowledge = new ArrayList<>(EquivalentExchangeAPI.getKnowledgeHandler().getKnowledgeList(player));
 
+        int pageSkip = 0;
+        if(page > 0) pageSkip = 16 * page;
+        int skipCount = 0;
+
         if(!search.isEmpty())
         {
             List<ItemStack> copy = new ArrayList<>();
-            knowledge.forEach(stack ->
+            for (ItemStack stack : knowledge)
             {
                 if(stack.getItem().getName(stack).getString().toLowerCase(Locale.ROOT).contains(search))
                 {
-                   copy.add(stack.copy());
+                    skipCount++;
+                    if(skipCount < pageSkip) continue;
+                    copy.add(stack.copy());
                 }
-            });
+            }
 
             knowledge = copy;
         }
@@ -72,6 +78,10 @@ public class TransmutationTableHandler
         {
             if(stack.isEmpty() && i <= 15 || EquivalentExchangeAPI.hasEmcValue(stack) && playersEMC >= EquivalentExchangeAPI.getEmcValue(stack) && i <= 15)
             {
+                if(pageSkip > 0) {
+                    skipCount++;
+                    if (skipCount < pageSkip) continue;
+                }
                 stack.setCount(1);
                 itemStacks.set(i, stack);
                 if(i >= 15)

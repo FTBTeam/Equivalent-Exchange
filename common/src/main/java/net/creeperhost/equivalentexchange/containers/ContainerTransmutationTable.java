@@ -34,6 +34,9 @@ public class ContainerTransmutationTable extends ContainerBase
         if(playerInv.player instanceof ServerPlayer serverPlayer)
         {
             transmutationInventory = TransmutationTableHandler.getTransmutationInventory(playerInv.player);
+            transmutationInventory.resetPage();
+            transmutationInventory.resetFilter();
+            transmutationInventory.updateInventory();
 
             new PlayerEmcPacket(EquivalentExchangeAPI.getStorageHandler().getEmcValueFor(serverPlayer)).sendTo(serverPlayer);
             new KnowledgePacket(EquivalentExchangeAPI.getKnowledgeHandler().getKnowledgeList(serverPlayer)).sendTo(serverPlayer);
@@ -42,6 +45,9 @@ public class ContainerTransmutationTable extends ContainerBase
         else
         {
             transmutationInventory = TransmutationTableHandler.getTransmutationInventory(playerInv.player);
+            transmutationInventory.resetPage();
+            transmutationInventory.resetFilter();
+            transmutationInventory.updateInventory();
         }
 
         //Burn slot

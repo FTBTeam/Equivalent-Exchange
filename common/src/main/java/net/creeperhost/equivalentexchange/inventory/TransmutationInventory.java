@@ -18,12 +18,15 @@ public class TransmutationInventory implements Container
     private final NonNullList<ItemStack> items;
     @Nullable Player player;
     private String filter = "";
+    private int page = 0;
 
     public TransmutationInventory(@Nullable Player player)
     {
         this.player = player;
         this.items = NonNullList.withSize(27, ItemStack.EMPTY);
-        filter = "";
+        resetFilter();
+        resetPage();
+        updateInventory();
         setChanged();
     }
 
@@ -125,9 +128,13 @@ public class TransmutationInventory implements Container
     @Override
     public void setChanged()
     {
+    }
+
+    public void updateInventory()
+    {
         if(player == null) return;
 
-        NonNullList<ItemStack> transmutations = TransmutationTableHandler.getTransmutationContent(filter, player);
+        NonNullList<ItemStack> transmutations = TransmutationTableHandler.getTransmutationContent(page, filter, player);
         int start = 11;
         int end = 26;
         int i = start;
@@ -191,6 +198,27 @@ public class TransmutationInventory implements Container
     public void setFilter(String filter, boolean changed)
     {
         this.filter = filter;
-        this.setChanged();
+        this.updateInventory();
+    }
+
+    public void resetFilter()
+    {
+        setFilter("", true);
+    }
+
+    public void setPage(int page)
+    {
+        this.page = page;
+        this.updateInventory();
+    }
+
+    public int getPage()
+    {
+        return this.page;
+    }
+
+    public void resetPage()
+    {
+        setPage(0);
     }
 }

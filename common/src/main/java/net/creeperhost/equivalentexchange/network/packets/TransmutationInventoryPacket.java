@@ -44,6 +44,7 @@ public class TransmutationInventoryPacket extends BaseS2CMessage
         {
             TransmutationInventory transmutationInventory = new TransmutationInventory(player);
             transmutationInventory.deserializeNBT(compoundTag);
+            transmutationInventory.updateInventory();
             TransmutationTableHandler.updateInventory(player, transmutationInventory);
         }
     }

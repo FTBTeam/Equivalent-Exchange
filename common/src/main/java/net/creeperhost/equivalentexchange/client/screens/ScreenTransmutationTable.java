@@ -7,8 +7,10 @@ import net.creeperhost.equivalentexchange.api.IEmcScreen;
 import net.creeperhost.equivalentexchange.containers.ContainerTransmutationTable;
 import net.creeperhost.equivalentexchange.impl.TransmutationTableHandler;
 import net.creeperhost.equivalentexchange.network.packets.UpdateTransmutationFilter;
+import net.creeperhost.equivalentexchange.network.packets.UpdateTransmutationPage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -25,6 +27,9 @@ public class ScreenTransmutationTable extends AbstractContainerScreen<ContainerT
     private static final ResourceLocation GUI_TEXTURE = new ResourceLocation(Constants.MOD_ID, "textures/gui/transmutation_table.png");
     private final Player player;
     private EditBox searchBox;
+    private Button leftButton;
+    private Button rightButton;
+    private int page = 0;
 
     public ScreenTransmutationTable(ContainerTransmutationTable abstractContainerMenu, Inventory inventory, Component component)
     {
@@ -32,6 +37,7 @@ public class ScreenTransmutationTable extends AbstractContainerScreen<ContainerT
         this.player = inventory.player;
         this.imageWidth = 228;
         this.imageHeight = 196;
+        this.page = 0;
     }
 
     @Override
@@ -40,6 +46,24 @@ public class ScreenTransmutationTable extends AbstractContainerScreen<ContainerT
         super.init();
         searchBox = new EditBox(this.font, leftPos + 88, topPos + 8, 45, 10, Component.literal(""));
         searchBox.setValue("");
+
+        leftButton = Button.builder(Component.literal("<"), button ->
+                changePage(this.page -1)).pos(leftPos + 135, topPos + 100).size(15, 15).build();
+
+        rightButton = Button.builder(Component.literal(">"), button ->
+                changePage(this.page +1)).pos(leftPos + 180, topPos + 100).size(15, 15).build();
+
+        addRenderableWidget(leftButton);
+        addRenderableWidget(rightButton);
+    }
+
+    public void changePage(int page)
+    {
+        if(page >= 0)
+        {
+            this.page = page;
+            new UpdateTransmutationPage(page).sendToServer();
+        }
     }
 
     @Override
@@ -63,6 +87,9 @@ public class ScreenTransmutationTable extends AbstractContainerScreen<ContainerT
         {
             guiGraphics.drawString(Minecraft.getInstance().font, Component.literal("EMC:"), leftPos + 6, topPos + 88, 0x404040, false);
             guiGraphics.drawString(Minecraft.getInstance().font, Component.literal(EmcFormatter.tidyValue(EquivalentExchangeAPI.getStorageHandler().getEmcValueFor(minecraft.player))), leftPos + 6, topPos + 100, 0x404040, false);
+
+            guiGraphics.drawString(Minecraft.getInstance().font, Component.literal("" + page),
+                    leftPos + 162, topPos + 106, 0x404040, false);
 
             renderTooltip(guiGraphics, mouseX, mouseY);
 

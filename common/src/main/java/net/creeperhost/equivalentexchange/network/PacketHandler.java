@@ -14,6 +14,7 @@ public interface PacketHandler
     MessageType ACTION_KEY = NET.registerC2S("action_key", ActionKeyPacket::new);
     MessageType CHARGE_KEY = NET.registerC2S("charge_key", ChargeKeyPacket::new);
     MessageType UPDATE_FILTER = NET.registerC2S("update_filter", UpdateTransmutationFilter::new);
+    MessageType UPDATE_PAGE = NET.registerC2S("update_page", UpdateTransmutationPage::new);
 
     MessageType EMC_SYNC = NET.registerS2C("emc_sync", PlayerEmcPacket::new);
     MessageType EMC_VALUE_SYNC = NET.registerS2C("emc_value_sync", EmcValuesPacket::new);
