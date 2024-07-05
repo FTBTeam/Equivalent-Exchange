@@ -1,5 +1,6 @@
 package net.creeperhost.equivalentexchange.inventory;
 
+import net.creeperhost.equivalentexchange.EquivalentExchange;
 import net.creeperhost.equivalentexchange.api.EquivalentExchangeAPI;
 import net.creeperhost.equivalentexchange.api.item.IKleinStarItem;
 import net.creeperhost.equivalentexchange.impl.TransmutationTableHandler;
@@ -10,6 +11,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -77,26 +79,31 @@ public class TransmutationInventory implements Container
     public void setItem(int i, @NotNull ItemStack itemStack)
     {
         if(player == null) return;
+        if(!EquivalentExchangeAPI.hasEmcValue(itemStack))
+        {
+            EquivalentExchange.LOGGER.error("Player tried adding item {} to transmutation inventory with no emc value", itemStack);
+            return;
+        }
+        //Burn slot
         if(i == 0)
         {
-            if(EquivalentExchangeAPI.hasEmcValue(itemStack))
+            if(!getItem(i).isEmpty())
             {
-                if(!player.level().isClientSide)
-                {
-                    //Create a new instance of the item in order to remove any extra data added in other ways
-                    EquivalentExchangeAPI.getKnowledgeHandler().addKnowledge(player, new ItemStack(itemStack.getItem()));
-
-                    double value = EquivalentExchangeAPI.getEmcValue(itemStack) * itemStack.getCount();
-                    if(itemStack.getItem() instanceof IKleinStarItem kleinStar)
-                    {
-                        value += kleinStar.getKleinStarStored(itemStack);
-                    }
-                    EquivalentExchangeAPI.getStorageHandler().addEmcFor(player, value);
-                    updateInventory();
-                    return;
-                }
-                //don't setItem as the item has been destroyed and turned into emc
+                if(!getItem(i).is(Items.AIR))
+                    EquivalentExchange.LOGGER.error("Item stuck in burn slot {} with emc value {}", getItem(i).getDisplayName().getString(), EquivalentExchangeAPI.getEmcValue(itemStack));
             }
+            //Create a new instance of the item in order to remove any extra data added in other ways
+            EquivalentExchangeAPI.getKnowledgeHandler().addKnowledge(player, new ItemStack(itemStack.getItem()));
+
+            double value = EquivalentExchangeAPI.getEmcValue(itemStack) * itemStack.getCount();
+            if(itemStack.getItem() instanceof IKleinStarItem kleinStar)
+            {
+                value += kleinStar.getKleinStarStored(itemStack);
+            }
+            EquivalentExchangeAPI.getStorageHandler().addEmcFor(player, value);
+            updateInventory();
+            //return here so the item is not added to the items list
+            return;
         }
         else if(i == 1)
         {
