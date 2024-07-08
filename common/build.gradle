@@ -43,7 +43,9 @@ publishing {
     publications {
         mavenCommon(MavenPublication) {
             artifactId = rootProject.archives_base_name
-            from components.java
+
+            artifact remapJar
+            artifact sourcesJar
         }
     }
 }
