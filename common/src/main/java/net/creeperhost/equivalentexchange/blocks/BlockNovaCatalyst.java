@@ -1,6 +1,5 @@
 package net.creeperhost.equivalentexchange.blocks;
 
-import net.creeperhost.equivalentexchange.entities.EntityNovaCatalyst;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
