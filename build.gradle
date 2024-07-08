@@ -1,8 +1,11 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "1.5-SNAPSHOT" apply false
-    id "me.shedaniel.unified-publishing" version "0.1.+" apply false
+    id "me.modmuss50.mod-publish-plugin" version "0.5.1"
 }
+
+def javaVersion = 17
+def javaVersionObj = JavaVersion.VERSION_17
 
 architectury {
     minecraft = rootProject.minecraft_version
@@ -17,10 +20,7 @@ subprojects {
 
     dependencies {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
-        // The following line declares the mojmap mappings, you may use other mappings as well
         mappings loom.officialMojangMappings()
-        // The following line declares the yarn mappings you may select this one as well.
-        // mappings "net.fabricmc:yarn:1.18+build.1:v2"
     }
 }
 
@@ -29,8 +29,7 @@ allprojects {
     apply plugin: "architectury-plugin"
     apply plugin: "maven-publish"
 
-    def ENV = System.getenv()
-    version = "${minecraft_version}-${mod_version}"//-build.${ENV.GITHUB_RUN_NUMBER ?: 9999}"
+    version = "${minecraft_version}-${mod_version}"
     group = rootProject.maven_group
     archivesBaseName = rootProject.archives_base_name
 
@@ -55,15 +54,97 @@ allprojects {
                 includeGroup "dev.ftb.mods"
             }
         }
-
     }
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
-        options.release = 17
+        options.release = javaVersion
     }
 
     java {
         withSourcesJar()
     }
+
+    publishing {
+        repositories {
+            def token = providers.environmentVariable("FTB_MAVEN_TOKEN")
+            if (token.isPresent()) {
+                maven {
+                    url "https://maven.ftb.dev/releases"
+                    credentials {
+                        username = "ftb"
+                        password = token.get()
+                    }
+                }
+            }
+        }
+    }
+}
+
+publishMods {
+    dryRun = providers.environmentVariable("CURSEFORGE_KEY").getOrNull() == null
+    changelog = createChangelog()
+    version = "${mod_version}"
+
+    def tag = providers.environmentVariable("TAG").getOrElse("release")
+    type = tag.endsWith("-beta") ? BETA : (tag.endsWith("-alpha") ? ALPHA : STABLE)
+
+    def createOptions = (String projectName) -> {
+        publishOptions {
+            file = project.provider { project(":$projectName").tasks.remapJar }.flatMap { it.archiveFile }
+            displayName = "[${projectName.toUpperCase()}][${minecraft_version}] Equivalent Exchange ${mod_version}"
+            modLoaders.add(projectName.toLowerCase())
+        }
+    }
+
+    def curseForgeOptions = curseforgeOptions {
+        accessToken = providers.environmentVariable("CURSEFORGE_KEY")
+        projectId = curse_project_id
+        minecraftVersions.add("${minecraft_version}")
+        javaVersions.add(javaVersionObj)
+    }
+
+    curseforge("curseforgeFabric") {
+        from(curseForgeOptions, createOptions("fabric"))
+        requires('architectury-api')
+        requires('fabric-api')
+        requires('polylib')
+    }
+
+    curseforge("curseforgeNeoForge") {
+        from(curseForgeOptions, createOptions("neoforge"))
+        requires('architectury-api')
+        requires('polylib')
+    }
+}
+
+/**
+ * Creates a snippet of the changelog using the projects version id as an anchor
+ */
+def createChangelog() {
+    def changelogText = file("CHANGELOG.md").text
+    def changelog = changelogText.split("\n")
+
+    def changelogBuilder = new StringBuilder()
+
+    def consuming = false
+    for (line in changelog) {
+        if (line.startsWith("## ")) {
+            consuming = line.contains("${mod_version}")
+            if (!consuming) {
+                break
+            }
+        }
+
+        if (consuming) {
+            changelogBuilder.append(line).append("\n")
+        }
+    }
+
+    def output = changelogBuilder.toString()
+    if (output.isBlank()) {
+        return "## ${mod_version}\n\n### Changes\n\n- General improvements and bug fixes."
+    }
+
+    return output.trim()
 }
