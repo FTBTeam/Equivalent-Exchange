@@ -4,9 +4,11 @@ import net.creeperhost.equivalentexchange.EquivalentExchange;
 import net.creeperhost.equivalentexchange.api.EquivalentExchangeAPI;
 import net.creeperhost.equivalentexchange.api.item.IKleinStarItem;
 import net.creeperhost.equivalentexchange.impl.TransmutationTableHandler;
+import net.creeperhost.equivalentexchange.network.packets.knowledge.RemoveKnowledgePacket;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Player;
@@ -47,7 +49,7 @@ public class TransmutationInventory implements Container
     @Override
     public @NotNull ItemStack getItem(int i)
     {
-        return i >= 0 && i < this.items.size() ? this.items.get(i) : ItemStack.EMPTY;
+        return  items.get(i);
     }
 
     @Override
@@ -61,7 +63,7 @@ public class TransmutationInventory implements Container
                 EquivalentExchangeAPI.getStorageHandler().removeEmcFor(player, EquivalentExchangeAPI.getEmcValue(itemStack) * j);
             }
         }
-        if (!itemStack.isEmpty()) this.setChanged();
+        if (!itemStack.isEmpty()) this.updateInventory();
         return itemStack;
     }
 
@@ -79,18 +81,19 @@ public class TransmutationInventory implements Container
     public void setItem(int i, @NotNull ItemStack itemStack)
     {
         if(player == null) return;
-        if(!EquivalentExchangeAPI.hasEmcValue(itemStack))
+        boolean client = player.level().isClientSide();
+
+        if(!client && !EquivalentExchangeAPI.hasEmcValue(itemStack))
         {
             EquivalentExchange.LOGGER.error("Player tried adding item {} to transmutation inventory with no emc value", itemStack);
             return;
         }
         //Burn slot
-        if(i == 0)
+        if(i == 0 && !client)
         {
             if(!getItem(i).isEmpty())
             {
-                if(!getItem(i).is(Items.AIR))
-                    EquivalentExchange.LOGGER.error("Item stuck in burn slot {} with emc value {}", getItem(i).getDisplayName().getString(), EquivalentExchangeAPI.getEmcValue(itemStack));
+                EquivalentExchange.LOGGER.error("Item stuck in burn slot {} with emc value {}", getItem(i).getDisplayName().getString(), EquivalentExchangeAPI.getEmcValue(itemStack));
             }
             //Create a new instance of the item in order to remove any extra data added in other ways
             EquivalentExchangeAPI.getKnowledgeHandler().addKnowledge(player, new ItemStack(itemStack.getItem()));
@@ -105,9 +108,10 @@ public class TransmutationInventory implements Container
             //return here so the item is not added to the items list
             return;
         }
-        else if(i == 1)
+        else if(i == 1 && !client)
         {
             EquivalentExchangeAPI.getKnowledgeHandler().removeKnowledge(player, getItem(i));
+            new RemoveKnowledgePacket(getItem(i)).sendTo((ServerPlayer) player);
             updateInventory();
         }
         else if(i >= 3 && i <= 10)
@@ -126,7 +130,7 @@ public class TransmutationInventory implements Container
                 EquivalentExchangeAPI.getStorageHandler().setEmcValueFor(player, value);
                 updateInventory();
             }
-            else if(EquivalentExchangeAPI.hasEmcValue(itemStack))
+            else if(!client && EquivalentExchangeAPI.hasEmcValue(itemStack))
             {
                 EquivalentExchangeAPI.getKnowledgeHandler().addKnowledge(player, itemStack);
                 updateInventory();
