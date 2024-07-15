@@ -88,29 +88,27 @@ public class TransmutationInventory implements Container
             EquivalentExchange.LOGGER.error("Player tried adding item {} to transmutation inventory with no emc value", itemStack);
             return;
         }
-        // SLOT: Burn item
-        if(i == 0)
-        {
-            if(!getItem(i).isEmpty())
-            {
-                EquivalentExchange.LOGGER.error("Item stuck in burn slot {} with emc value {}", getItem(i).getDisplayName().getString(), EquivalentExchangeAPI.getEmcValue(itemStack));
-            }
-            //Create a new instance of the item in order to remove any extra data added in other ways
-            EquivalentExchangeAPI.getKnowledgeHandler().addKnowledge(player, new ItemStack(itemStack.getItem()));
-
-            double value = EquivalentExchangeAPI.getEmcValue(itemStack) * itemStack.getCount();
-            if(itemStack.getItem() instanceof IKleinStarItem kleinStar)
-            {
-                value += kleinStar.getKleinStarStored(itemStack);
-            }
-            EquivalentExchangeAPI.getStorageHandler().addEmcFor(player, value);
-            updateInventory();
-            //return here so the item is not added to the items list
-            return;
-        }
-        this.items.set(i, itemStack);
+        if(i != 0)
+            this.items.set(i, itemStack);
         if(!client)
         {
+            // SLOT: Burn item
+            if(i == 0)
+            {
+                if(!getItem(i).isEmpty())
+                {
+                    EquivalentExchange.LOGGER.error("Item stuck in burn slot {} with emc value {}", getItem(i).getDisplayName().getString(), EquivalentExchangeAPI.getEmcValue(itemStack));
+                }
+                //Create a new instance of the item in order to remove any extra data added in other ways
+                EquivalentExchangeAPI.getKnowledgeHandler().addKnowledge(player, new ItemStack(itemStack.getItem()));
+
+                double value = EquivalentExchangeAPI.getEmcValue(itemStack) * itemStack.getCount();
+                if(itemStack.getItem() instanceof IKleinStarItem kleinStar)
+                {
+                    value += kleinStar.getKleinStarStored(itemStack);
+                }
+                EquivalentExchangeAPI.getStorageHandler().addEmcFor(player, value);
+            }
             //SLOT: Unlearn item
             if(i == 1)
             {
