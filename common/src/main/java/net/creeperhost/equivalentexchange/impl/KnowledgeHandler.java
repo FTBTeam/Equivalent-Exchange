@@ -104,7 +104,7 @@ public class KnowledgeHandler implements IKnowledgeHandler
     public void removeKnowledge(Player player, ItemStack stack)
     {
         List<ItemStack> stacks = getKnowledgeList(player);
-        stacks.remove(stack);
+        stacks.removeIf(itemStack -> itemStack.is(stack.getItem()));
         setKnowledgeList(player, stacks);
         KnowledgeChangedEvent.KNOWLEDGE_REMOVED_EVENT.invoker().removed(player, stack);
     }
@@ -113,7 +113,7 @@ public class KnowledgeHandler implements IKnowledgeHandler
     public void removeKnowledge(UUID uuid, ItemStack stack)
     {
         List<ItemStack> stacks = getKnowledgeList(uuid);
-        stacks.remove(stack);
+        stacks.removeIf(itemStack -> itemStack.is(stack.getItem()));
         setKnowledgeList(uuid, stacks);
     }
 

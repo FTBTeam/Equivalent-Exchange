@@ -40,30 +40,20 @@ public class TransmutationTableHandler
         INVENTORIES.put(player.getUUID().toString(), transmutationInventory);
     }
 
-    public static NonNullList<ItemStack> getTransmutationContent(int page, String search, Player player)
+    public static NonNullList<ItemStack> getTransmutationContent(int page, String search, ItemStack emcTarget, Player player)
     {
-        NonNullList<ItemStack> itemStacks = NonNullList.withSize(16, ItemStack.EMPTY);
+        int PAGE_SIZE = 16;
         List<ItemStack> knowledge = new ArrayList<>(EquivalentExchangeAPI.getKnowledgeHandler().getKnowledgeList(player));
 
-        int pageSkip = 0;
-        if(page > 0) pageSkip = 16 * page;
-        int skipCount = 0;
+        knowledge.removeIf(stack -> !EquivalentExchangeAPI.hasEmcValue(stack)); // might occur on init and/or after major changes
+        // TODO corrupt/garbage knowledge deletion
 
         if(!search.isEmpty())
-        {
-            List<ItemStack> copy = new ArrayList<>();
-            for (ItemStack stack : knowledge)
-            {
-                if(stack.getItem().getName(stack).getString().toLowerCase(Locale.ROOT).contains(search))
-                {
-                    skipCount++;
-                    if(skipCount < pageSkip) continue;
-                    copy.add(stack.copy());
-                }
-            }
+            knowledge.removeIf(stack -> !stack.getItem().getName(stack).getString().toLowerCase(Locale.ROOT).contains(search.toLowerCase()));
 
-            knowledge = copy;
-        }
+        double playerEmcValue = EquivalentExchangeAPI.getStorageHandler().getEmcValueFor(player);
+        double emcCeiling = EquivalentExchangeAPI.hasEmcValue(emcTarget) ? Math.min(EquivalentExchangeAPI.getEmcValue(emcTarget), playerEmcValue) : playerEmcValue;
+        knowledge.removeIf(stack -> EquivalentExchangeAPI.getEmcValue(stack) > emcCeiling);
 
         knowledge.sort((o1, o2) ->
         {
@@ -72,25 +62,11 @@ public class TransmutationTableHandler
             return Double.compare(emc2, emc1);
         });
 
-        int i = 0;
-        double playersEMC = EquivalentExchangeAPI.getStorageHandler().getEmcValueFor(player);
-        for (ItemStack stack : knowledge)
-        {
-            if(stack.isEmpty() && i <= 15 || EquivalentExchangeAPI.hasEmcValue(stack) && playersEMC >= EquivalentExchangeAPI.getEmcValue(stack) && i <= 15)
-            {
-                if(pageSkip > 0) {
-                    skipCount++;
-                    if (skipCount < pageSkip) continue;
-                }
-                stack.setCount(1);
-                itemStacks.set(i, stack);
-                if(i >= 15)
-                {
-                    break;
-                }
-                i++;
-            }
-        }
+        NonNullList<ItemStack> itemStacks = NonNullList.withSize(PAGE_SIZE, ItemStack.EMPTY);
+        int pageSkip = PAGE_SIZE * page;
+        for (int i = pageSkip; i < Math.min(knowledge.size(), pageSkip + PAGE_SIZE); i++)
+            itemStacks.set(i - pageSkip, knowledge.get(i));
+
         return itemStacks;
     }
 
