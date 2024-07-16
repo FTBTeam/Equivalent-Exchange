@@ -137,22 +137,15 @@ public class ContainerTransmutationTable extends ContainerBase
         {
             ItemStack stack = slots.get(slotIndex).getItem().copy();
             double playersEMC = EquivalentExchangeAPI.getStorageHandler().getEmcValueFor(player);
-            int requestAmount = stack.getMaxStackSize();
-            double cost = EquivalentExchangeAPI.getEmcValue(stack) * requestAmount;
-            if(playersEMC >= cost)
-            {
-                stack.setCount(requestAmount);
-                player.addItem(stack);
-                EquivalentExchangeAPI.getStorageHandler().removeEmcFor(player, cost);
-                return ItemStack.EMPTY;
-            }
-            else
-            {
-                //TODO calculate how many of the item the player can afford and give them that amount
-                return ItemStack.EMPTY;
-            }
-        }
+            double itemEMCValue = EquivalentExchangeAPI.getEmcValue(stack);
+            int affordableAmount = (int) (playersEMC / itemEMCValue);
+            int extractableAmount = Math.min(affordableAmount, stack.getMaxStackSize());
+            stack.setCount(extractableAmount);
+            player.addItem(stack);
+            EquivalentExchangeAPI.getStorageHandler().removeEmcFor(player, itemEMCValue * extractableAmount);
 
+            transmutationInventory.updateInventory(); // FIXME this is a bad place to do it
+        }
         return ItemStack.EMPTY;
     }
 
