@@ -12,6 +12,7 @@ import net.minecraft.server.level.ServerPlayer;
 
 public class ServerEvents
 {
+    
     public static void onLevelSave(ServerLevel serverLevel)
     {
         AlchemicalBagHandler.onServerSaveEvent(serverLevel);
@@ -62,8 +63,5 @@ public class ServerEvents
 
     public static void onServerLoad(ServerLevel serverLevel)
     {
-        EquivalentExchangeAPI.getStorageHandler().getBaseSavePath().toFile().mkdirs();
-
-        EquivalentExchangeAPI.getKnowledgeHandler().getBaseSavePath().toFile().mkdirs();
     }
 }

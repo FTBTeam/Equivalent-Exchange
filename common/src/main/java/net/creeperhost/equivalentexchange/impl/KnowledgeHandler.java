@@ -1,9 +1,9 @@
 package net.creeperhost.equivalentexchange.impl;
 
-import dev.ftb.mods.ftbteams.api.FTBTeamsAPI;
 import net.creeperhost.equivalentexchange.EquivalentExchange;
 import net.creeperhost.equivalentexchange.api.IKnowledgeHandler;
 import net.creeperhost.equivalentexchange.api.events.KnowledgeChangedEvent;
+import net.creeperhost.equivalentexchange.server.ServerEvents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtIo;
@@ -25,13 +25,7 @@ public class KnowledgeHandler implements IKnowledgeHandler
     @Override
     public Path getSavePath(Player player)
     {
-        return getBaseSavePath().resolve(player.getUUID().toString() + "_knowledge.dat");
-    }
-
-    @Override
-    public Path getBaseSavePath()
-    {
-        return FTBTeamsAPI.api().getManager().getServer().getWorldPath(LevelResource.PLAYER_DATA_DIR).resolve("knowledge");
+        return player.getServer().getWorldPath(LevelResource.PLAYER_DATA_DIR).resolve(player.getUUID().toString() + "_knowledge.dat");
     }
 
     @Override
@@ -104,7 +98,7 @@ public class KnowledgeHandler implements IKnowledgeHandler
     public void removeKnowledge(Player player, ItemStack stack)
     {
         List<ItemStack> stacks = getKnowledgeList(player);
-        stacks.remove(stack);
+        stacks.removeIf(itemStack -> itemStack.is(stack.getItem()));
         setKnowledgeList(player, stacks);
         KnowledgeChangedEvent.KNOWLEDGE_REMOVED_EVENT.invoker().removed(player, stack);
     }
@@ -113,7 +107,7 @@ public class KnowledgeHandler implements IKnowledgeHandler
     public void removeKnowledge(UUID uuid, ItemStack stack)
     {
         List<ItemStack> stacks = getKnowledgeList(uuid);
-        stacks.remove(stack);
+        stacks.removeIf(itemStack -> itemStack.is(stack.getItem()));
         setKnowledgeList(uuid, stacks);
     }
 

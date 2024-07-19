@@ -11,8 +11,6 @@ public interface IKnowledgeHandler
 {
     Path getSavePath(Player player);
 
-    Path getBaseSavePath();
-
     List<ItemStack> getKnowledgeList(Player player);
 
     List<ItemStack> getKnowledgeList(UUID uuid);

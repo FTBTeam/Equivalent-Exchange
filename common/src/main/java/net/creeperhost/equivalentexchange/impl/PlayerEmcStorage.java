@@ -1,15 +1,14 @@
 package net.creeperhost.equivalentexchange.impl;
 
-import dev.ftb.mods.ftbteams.api.FTBTeamsAPI;
 import net.creeperhost.equivalentexchange.EquivalentExchange;
 import net.creeperhost.equivalentexchange.api.IEmcStorageHandler;
 import net.creeperhost.equivalentexchange.api.events.EmcChangedEvent;
+import net.creeperhost.equivalentexchange.server.ServerEvents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.storage.LevelResource;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -22,13 +21,7 @@ public class PlayerEmcStorage implements IEmcStorageHandler
     @Override
     public Path getSavePath(Player player)
     {
-        return getBaseSavePath().resolve(player.getUUID().toString() + "_emc.dat");
-    }
-
-    @Override
-    public Path getBaseSavePath()
-    {
-        return FTBTeamsAPI.api().getManager().getServer().getWorldPath(LevelResource.PLAYER_DATA_DIR);
+        return player.getServer().getWorldPath(LevelResource.PLAYER_DATA_DIR).resolve(player.getUUID().toString() + "_emc.dat");
     }
 
     @Override
@@ -133,7 +126,6 @@ public class PlayerEmcStorage implements IEmcStorageHandler
             EquivalentExchange.LOGGER.info("Loading saved emc for player " + player.getName().getString());
             if(!getSavePath(player).toFile().exists())
             {
-                getSavePath(player).toFile().mkdirs();
                 saveEmcToFile(player);
             }
             try

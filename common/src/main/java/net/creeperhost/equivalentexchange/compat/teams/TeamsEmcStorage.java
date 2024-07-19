@@ -25,13 +25,7 @@ public class TeamsEmcStorage implements IEmcStorageHandler
     @Override
     public Path getSavePath(Player player)
     {
-        return getBaseSavePath().resolve(getPlayerTeam(player).getTeamId().toString() + "_emc.dat");
-    }
-
-    @Override
-    public Path getBaseSavePath()
-    {
-        return FTBTeamsAPI.api().getManager().getServer().getWorldPath(LevelResource.ROOT).resolve("ftbteams/emc/");
+        return FTBTeamsAPI.api().getManager().getServer().getWorldPath(LevelResource.ROOT).resolve("ftbteams/emc/").resolve(getPlayerTeam(player).getTeamId().toString() + "_emc.dat");
     }
 
     private Team getPlayerTeam(Player player)
@@ -123,6 +117,8 @@ public class TeamsEmcStorage implements IEmcStorageHandler
     {
         if(player != null && !player.level().isClientSide)
         {
+            getSavePath(player).getParent().toFile().mkdirs();
+
             EquivalentExchange.LOGGER.info("Saving stored emc for team " + getPlayerTeam(player).getTeamId().toString());
             try
             {

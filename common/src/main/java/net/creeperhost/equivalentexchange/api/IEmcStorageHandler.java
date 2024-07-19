@@ -10,8 +10,6 @@ public interface IEmcStorageHandler
 {
     Path getSavePath(Player player);
 
-    Path getBaseSavePath();
-
     double getEmcValueFor(Player player);
 
     double getEmcValueFor(UUID uuid);
