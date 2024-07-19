@@ -26,13 +26,7 @@ public class TeamsKnowledgeHandler implements IKnowledgeHandler
     @Override
     public Path getSavePath(Player player)
     {
-        return getBaseSavePath().resolve(getPlayerTeam(player).getTeamId().toString() + "_knowledge.dat");
-    }
-
-    @Override
-    public Path getBaseSavePath()
-    {
-        return FTBTeamsAPI.api().getManager().getServer().getWorldPath(LevelResource.ROOT).resolve("ftbteams/knowledge/");
+        return FTBTeamsAPI.api().getManager().getServer().getWorldPath(LevelResource.ROOT).resolve("ftbteams/knowledge/").resolve(getPlayerTeam(player).getTeamId().toString() + "_knowledge.dat");
     }
 
     private Team getPlayerTeam(Player player)
@@ -144,6 +138,8 @@ public class TeamsKnowledgeHandler implements IKnowledgeHandler
     {
         if(player != null && !player.level().isClientSide)
         {
+            getSavePath(player).getParent().toFile().mkdirs();
+
             EquivalentExchange.LOGGER.info("Saving knowledge for team " + getPlayerTeam(player).getTeamId().toString());
             try
             {

@@ -1,21 +1,11 @@
 package net.creeperhost.equivalentexchange.impl;
 
-import net.creeperhost.equivalentexchange.EquivalentExchange;
 import net.creeperhost.equivalentexchange.api.EquivalentExchangeAPI;
 import net.creeperhost.equivalentexchange.inventory.TransmutationInventory;
 import net.minecraft.core.NonNullList;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtIo;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.storage.LevelResource;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
