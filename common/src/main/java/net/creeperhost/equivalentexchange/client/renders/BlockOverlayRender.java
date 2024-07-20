@@ -34,8 +34,12 @@ public class BlockOverlayRender
 
         MultiBufferSource.BufferSource buffer = mc.renderBuffers().bufferSource();
         int hitRange = 10;
-        BlockHitResult lookingAt = VectorHelper.getLookingAt(mc.player, ClipContext.Fluid.SOURCE_ONLY, hitRange);
-        if (mc.level.getBlockState(VectorHelper.getLookingAt(mc.player, hitRange).getBlockPos()) == Blocks.AIR.defaultBlockState())
+        BlockHitResult lookingAt = VectorHelper.getLookingAt(mc.player, item.getItem() instanceof ItemPhilosophersStone ? ClipContext.Fluid.SOURCE_ONLY : ClipContext.Fluid.NONE, hitRange);
+        if(item.getItem() instanceof IOverlayItem iOverlayItem)
+        {
+            if(iOverlayItem.excludedFromOverlay(mc.level.getBlockState(lookingAt.getBlockPos()))) return;
+        }
+        else if(mc.level.getBlockState(lookingAt.getBlockPos()) == Blocks.AIR.defaultBlockState())
         {
             return;
         }

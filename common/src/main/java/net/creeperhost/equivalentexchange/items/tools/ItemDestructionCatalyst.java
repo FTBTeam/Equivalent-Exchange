@@ -20,6 +20,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -34,6 +35,16 @@ public class ItemDestructionCatalyst extends FuelUsingItem implements IOverlayIt
     public ItemDestructionCatalyst()
     {
         super(new Properties().stacksTo(1));
+    }
+
+    public boolean excludedFromOverlay(BlockState blockState)
+    {
+        return blockIgnored(blockState);
+    }
+
+    public static boolean blockIgnored(BlockState blockState)
+    {
+        return blockState.is(BlockTags.FEATURES_CANNOT_REPLACE) || blockState.is(Blocks.AIR) || blockState.is(Blocks.WATER) || blockState.is(Blocks.LAVA);
     }
 
     @Override
@@ -55,7 +66,7 @@ public class ItemDestructionCatalyst extends FuelUsingItem implements IOverlayIt
             for (BlockPos pos : positions)
             {
                 BlockState blockState = level.getBlockState(pos);
-                if (!blockState.is(BlockTags.FEATURES_CANNOT_REPLACE))
+                if (!blockIgnored(blockState))
                 {
                     drops.addAll(Block.getDrops(blockState, (ServerLevel) level, pos, null, player, useOnContext.getItemInHand()));
                     level.removeBlock(pos, false);
@@ -109,7 +120,7 @@ public class ItemDestructionCatalyst extends FuelUsingItem implements IOverlayIt
 
         stream.forEach(currentPos ->
         {
-            if(!level.getBlockState(currentPos).isAir())
+            if(!blockIgnored(level.getBlockState(currentPos)))
                 changes.put(currentPos.immutable(), level.getBlockState(currentPos));
         });
         return changes;

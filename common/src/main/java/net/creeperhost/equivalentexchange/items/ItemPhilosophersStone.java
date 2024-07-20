@@ -48,6 +48,12 @@ public class ItemPhilosophersStone extends Item implements IActionItem, IChargea
     }
 
     @Override
+    public boolean excludedFromOverlay(BlockState blockState)
+    {
+        return blockState.isAir();
+    }
+
+    @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
     {
         ItemStack itemstack = player.getItemInHand(hand);
