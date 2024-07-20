@@ -1,5 +1,6 @@
 package net.creeperhost.equivalentexchange.client.renders;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -64,8 +65,13 @@ public class BlockOverlayRender
         poseStack.pushPose();
         poseStack.translate(-view.x(), -view.y(), -view.z());
 
-        VertexConsumer builder;
-        builder = buffer.getBuffer(RenderTypes.BlockOverlay);
+        RenderSystem.enableBlend();
+        RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.enableDepthTest();
+        RenderSystem.depthMask(false);
+
+        VertexConsumer builder = buffer.getBuffer(RenderTypes.BlockOverlay);
 
         Color finalColor = color;
         coords.forEach((blockPos, blockState) ->
@@ -82,8 +88,10 @@ public class BlockOverlayRender
         });
 
         poseStack.popPose();
-        RenderSystem.disableDepthTest();
         buffer.endBatch(RenderTypes.BlockOverlay);
+
+        RenderSystem.depthMask(true);
+        RenderSystem.disableBlend();
     }
 
     public static void render(Matrix4f matrix, VertexConsumer builder, BlockPos pos, Color color)
