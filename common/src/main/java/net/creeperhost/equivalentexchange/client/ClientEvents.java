@@ -41,6 +41,8 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.List;
 
+import org.jetbrains.annotations.Nullable;
+
 public class ClientEvents
 {
     public static void toolTipEvent(ItemStack stack, List<Component> components, TooltipFlag tooltipFlag)
@@ -127,7 +129,8 @@ public class ClientEvents
                     {
                         if(inWorldTransmutation.getInput() != null && inputState.equals(inWorldTransmutation.getInput()))
                         {
-                            BlockState out = minecraft.player.isShiftKeyDown() ? inWorldTransmutation.getAltResult() : inWorldTransmutation.getResult();
+                            @Nullable BlockState out = minecraft.player.isShiftKeyDown() ? inWorldTransmutation.getAltResult() : inWorldTransmutation.getResult();
+                            if (out == null) continue;
                             renderStack = new ItemStack(out.getBlock());
                             break;
                         }

@@ -27,6 +27,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 import java.util.Collections;
@@ -53,7 +54,7 @@ public class ItemPhilosophersStone extends Item implements IActionItem, IChargea
         return InteractionResult.SUCCESS;
     }
 
-    public static BlockState getTransmutation(BlockState blockState, boolean sneaking)
+    public static @Nullable BlockState getTransmutation(BlockState blockState, boolean sneaking)
     {
         for (InWorldTransmutation inWorldTransmutationRecipe : EquivalentExchangeAPI.IN_WORLD_TRANSMUTATION_RECIPES)
         {
@@ -69,7 +70,7 @@ public class ItemPhilosophersStone extends Item implements IActionItem, IChargea
     {
         BlockState targeted = level.getBlockState(pos);
         boolean isSneaking = player.isShiftKeyDown();
-        BlockState result = getTransmutation(targeted, isSneaking);
+        @Nullable BlockState result = getTransmutation(targeted, isSneaking);
         if (result == null)
         {
             return Collections.emptyMap();
@@ -101,7 +102,7 @@ public class ItemPhilosophersStone extends Item implements IActionItem, IChargea
             BlockState state = level.getBlockState(currentPos);
             if (state.is(targetBlock))
             {
-                BlockState actualResult;
+                @Nullable BlockState actualResult;
                 if (conversions.containsKey(state))
                 {
                     actualResult = conversions.get(state);
