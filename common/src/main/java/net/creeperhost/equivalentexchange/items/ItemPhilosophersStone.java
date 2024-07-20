@@ -48,7 +48,7 @@ public class ItemPhilosophersStone extends Item implements IActionItem, IChargea
     }
 
     @Override
-    public boolean excludedFromOverlay(BlockState blockState)
+    public boolean blockIgnored(BlockState blockState)
     {
         return blockState.isAir();
     }

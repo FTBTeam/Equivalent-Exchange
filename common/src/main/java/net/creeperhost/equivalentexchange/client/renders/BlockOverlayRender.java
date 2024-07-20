@@ -37,7 +37,7 @@ public class BlockOverlayRender
         BlockHitResult lookingAt = VectorHelper.getLookingAt(mc.player, item.getItem() instanceof ItemPhilosophersStone ? ClipContext.Fluid.SOURCE_ONLY : ClipContext.Fluid.NONE, hitRange);
         if(item.getItem() instanceof IOverlayItem iOverlayItem)
         {
-            if(iOverlayItem.excludedFromOverlay(mc.level.getBlockState(lookingAt.getBlockPos()))) return;
+            if(iOverlayItem.blockIgnored(mc.level.getBlockState(lookingAt.getBlockPos()))) return;
         }
         else if(mc.level.getBlockState(lookingAt.getBlockPos()) == Blocks.AIR.defaultBlockState())
         {

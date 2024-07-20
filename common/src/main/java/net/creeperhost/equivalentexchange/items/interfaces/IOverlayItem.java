@@ -11,5 +11,5 @@ public interface IOverlayItem
 
     Color getColour(ItemStack stack);
 
-    boolean excludedFromOverlay(BlockState block);
+    boolean blockIgnored(BlockState block);
 }

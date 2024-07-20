@@ -42,12 +42,12 @@ public class ItemDestructionCatalyst extends FuelUsingItem implements IOverlayIt
         super(new Properties().stacksTo(1));
     }
 
-    public boolean excludedFromOverlay(BlockState blockState)
+    public boolean blockIgnored(BlockState blockState)
     {
-        return blockIgnored(blockState);
+        return blockIgnoredStatic(blockState);
     }
 
-    public static boolean blockIgnored(BlockState blockState)
+    public static boolean blockIgnoredStatic(BlockState blockState)
     {
         return blockState.is(BlockTags.FEATURES_CANNOT_REPLACE) || blockState.is(Blocks.AIR) || blockState.is(Blocks.WATER) || blockState.is(Blocks.LAVA);
     }
@@ -130,7 +130,7 @@ public class ItemDestructionCatalyst extends FuelUsingItem implements IOverlayIt
 
         stream.forEach(currentPos ->
         {
-            if(!blockIgnored(level.getBlockState(currentPos))) changes.put(currentPos.immutable(), level.getBlockState(currentPos));
+            if(!blockIgnoredStatic(level.getBlockState(currentPos))) changes.put(currentPos.immutable(), level.getBlockState(currentPos));
         });
         return changes;
     }
