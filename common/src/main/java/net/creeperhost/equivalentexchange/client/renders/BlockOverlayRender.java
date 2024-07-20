@@ -33,7 +33,7 @@ public class BlockOverlayRender
 
         MultiBufferSource.BufferSource buffer = mc.renderBuffers().bufferSource();
         int hitRange = 10;
-        BlockHitResult lookingAt = VectorHelper.getLookingAt(mc.player, ClipContext.Fluid.NONE, hitRange);
+        BlockHitResult lookingAt = VectorHelper.getLookingAt(mc.player, ClipContext.Fluid.SOURCE_ONLY, hitRange);
         if (mc.level.getBlockState(VectorHelper.getLookingAt(mc.player, hitRange).getBlockPos()) == Blocks.AIR.defaultBlockState())
         {
             return;

@@ -118,7 +118,7 @@ public class ClientEvents
             if(stack != null && !stack.isEmpty() && stack.getItem() instanceof ItemPhilosophersStone stone)
             {
                 int range = 5;
-                BlockHitResult lookingAt = VectorHelper.getLookingAt(minecraft.player, ClipContext.Fluid.NONE, range);
+                BlockHitResult lookingAt = VectorHelper.getLookingAt(minecraft.player, ClipContext.Fluid.SOURCE_ONLY, range);
                 BlockPos blockPos = lookingAt.getBlockPos();
                 if(minecraft.level.getBlockState(blockPos) != null && !minecraft.level.getBlockState(blockPos).isAir())
                 {
