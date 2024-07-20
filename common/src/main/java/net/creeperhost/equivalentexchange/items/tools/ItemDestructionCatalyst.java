@@ -62,7 +62,7 @@ public class ItemDestructionCatalyst extends FuelUsingItem implements IOverlayIt
 
             int range = getRange(useOnContext.getItemInHand());
 
-            var positions = LevelHelper.getPositionsFromBox(LevelHelper.getAABBbox(blockPos, direction, --range));
+            var positions = LevelHelper.getPositionsFromBox(LevelHelper.getAABBbox(blockPos, direction, range--));
             for (BlockPos pos : positions)
             {
                 BlockState blockState = level.getBlockState(pos);
