@@ -5,6 +5,7 @@ import net.creeperhost.equivalentexchange.items.prefab.FuelUsingItem;
 import net.creeperhost.equivalentexchange.items.interfaces.IChargeableItem;
 import net.creeperhost.equivalentexchange.items.interfaces.IOverlayItem;
 import net.creeperhost.polylib.helpers.LevelHelper;
+import net.creeperhost.polylib.helpers.VectorHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -12,16 +13,20 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -48,27 +53,32 @@ public class ItemDestructionCatalyst extends FuelUsingItem implements IOverlayIt
     }
 
     @Override
-    public @NotNull InteractionResult useOn(@NotNull UseOnContext useOnContext)
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
     {
-        if(hasEnoughFuel(useOnContext.getPlayer(), EquivalentExchange.CONFIG_DATA.DestructionCatalystUseCost))
+        ItemStack itemStack = player.getItemInHand(hand);
+
+        if(!hasEnoughFuel(player, EquivalentExchange.CONFIG_DATA.DestructionCatalystUseCost)) return InteractionResultHolder.fail(itemStack);
+
+        if (level.isClientSide) return InteractionResultHolder.success(itemStack);
+
+        int hitRange = 5;
+        BlockHitResult hitResult = VectorHelper.getLookingAt(player, ClipContext.Fluid.SOURCE_ONLY, hitRange);
+
+        if(hitResult.getType() == HitResult.Type.BLOCK)
         {
-            Level level = useOnContext.getLevel();
-            if (level.isClientSide) return InteractionResult.SUCCESS;
-            if (useOnContext.getPlayer() == null) return InteractionResult.FAIL;
-            Player player = useOnContext.getPlayer();
-            BlockPos blockPos = useOnContext.getClickedPos();
-            Direction direction = useOnContext.getClickedFace();
+            BlockPos targetPos = hitResult.getBlockPos();
+            Direction targetFace = hitResult.getDirection();
+
+            int range = getRange(itemStack);
             List<ItemStack> drops = new ArrayList<>();
 
-            int range = getRange(useOnContext.getItemInHand());
-
-            var positions = LevelHelper.getPositionsFromBox(LevelHelper.getAABBbox(blockPos, direction, range--));
+            var positions = LevelHelper.getPositionsFromBox(LevelHelper.getAABBbox(targetPos, targetFace, range--));
             for (BlockPos pos : positions)
             {
                 BlockState blockState = level.getBlockState(pos);
                 if (!blockIgnored(blockState))
                 {
-                    drops.addAll(Block.getDrops(blockState, (ServerLevel) level, pos, null, player, useOnContext.getItemInHand()));
+                    drops.addAll(Block.getDrops(blockState, (ServerLevel) level, pos, null, player, itemStack));
                     level.removeBlock(pos, false);
                 }
             }
@@ -79,10 +89,10 @@ public class ItemDestructionCatalyst extends FuelUsingItem implements IOverlayIt
                 ItemEntity item = new ItemEntity(level, player.getX(), player.getY(), player.getZ(), drop);
                 level.addFreshEntity(item);
             }
-            useFuel(useOnContext.getPlayer(), EquivalentExchange.CONFIG_DATA.DestructionCatalystUseCost);
-            return InteractionResult.SUCCESS;
+            useFuel(player, EquivalentExchange.CONFIG_DATA.DestructionCatalystUseCost);
+            return InteractionResultHolder.success(itemStack);
         }
-        return InteractionResult.FAIL;
+        return InteractionResultHolder.pass(itemStack);
     }
 
     public static Map<BlockPos, BlockState> getChanges(Level level, BlockPos pos, Player player, Direction sideHit, int charge)
@@ -112,7 +122,7 @@ public class ItemDestructionCatalyst extends FuelUsingItem implements IOverlayIt
         {
             stream = BlockPos.betweenClosedStream(pos.offset(-1, 0, -1), pos.offset(1, -charge, 1));
         }
-        if (stream == null)
+        if(stream == null)
         {
             return Collections.emptyMap();
         }
@@ -120,8 +130,7 @@ public class ItemDestructionCatalyst extends FuelUsingItem implements IOverlayIt
 
         stream.forEach(currentPos ->
         {
-            if(!blockIgnored(level.getBlockState(currentPos)))
-                changes.put(currentPos.immutable(), level.getBlockState(currentPos));
+            if(!blockIgnored(level.getBlockState(currentPos))) changes.put(currentPos.immutable(), level.getBlockState(currentPos));
         });
         return changes;
     }
