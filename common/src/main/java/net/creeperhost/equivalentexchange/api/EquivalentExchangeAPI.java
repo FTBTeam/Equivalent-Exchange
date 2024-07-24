@@ -15,6 +15,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.text.NumberFormat;
 import java.util.*;
 
+import org.jetbrains.annotations.Nullable;
+
+
 public class EquivalentExchangeAPI
 {
     public static IEmcStorageHandler iEmcStorageHandler;
@@ -27,7 +30,7 @@ public class EquivalentExchangeAPI
     public static Map<RecipeType<?>, IEmcRecipeParser> PARSERS = new HashMap<>();
 
     @Deprecated
-    public static void registerInWorldTransmutationRecipe(BlockState input, BlockState output, BlockState altOutput)
+    public static void registerInWorldTransmutationRecipe(BlockState input, BlockState output, @Nullable BlockState altOutput)
     {
         InWorldTransmutation inWorldTransmutation = new InWorldTransmutation(input, output, altOutput);
         IN_WORLD_TRANSMUTATION_RECIPES.add(inWorldTransmutation);

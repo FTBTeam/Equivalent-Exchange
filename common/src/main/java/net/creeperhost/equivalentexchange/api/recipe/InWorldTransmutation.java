@@ -1,5 +1,7 @@
 package net.creeperhost.equivalentexchange.api.recipe;
 
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.world.level.block.state.BlockState;
 
 //TODO this should also be a recipe json at some point
@@ -8,9 +10,9 @@ public class InWorldTransmutation
 {
     BlockState input;
     BlockState result;
-    BlockState altResult;
+    @Nullable BlockState altResult;
 
-    public InWorldTransmutation(BlockState input, BlockState result, BlockState altResult)
+    public InWorldTransmutation(BlockState input, BlockState result, @Nullable BlockState altResult)
     {
         this.input = input;
         this.result = result;
@@ -27,7 +29,7 @@ public class InWorldTransmutation
         return result;
     }
 
-    public BlockState getAltResult()
+    public @Nullable BlockState getAltResult()
     {
         return altResult;
     }

@@ -41,6 +41,8 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.List;
 
+import org.jetbrains.annotations.Nullable;
+
 public class ClientEvents
 {
     public static void toolTipEvent(ItemStack stack, List<Component> components, TooltipFlag tooltipFlag)
@@ -116,7 +118,7 @@ public class ClientEvents
             if(stack != null && !stack.isEmpty() && stack.getItem() instanceof ItemPhilosophersStone stone)
             {
                 int range = 5;
-                BlockHitResult lookingAt = VectorHelper.getLookingAt(minecraft.player, ClipContext.Fluid.NONE, range);
+                BlockHitResult lookingAt = VectorHelper.getLookingAt(minecraft.player, ClipContext.Fluid.SOURCE_ONLY, range);
                 BlockPos blockPos = lookingAt.getBlockPos();
                 if(minecraft.level.getBlockState(blockPos) != null && !minecraft.level.getBlockState(blockPos).isAir())
                 {
@@ -127,7 +129,8 @@ public class ClientEvents
                     {
                         if(inWorldTransmutation.getInput() != null && inputState.equals(inWorldTransmutation.getInput()))
                         {
-                            BlockState out = minecraft.player.isShiftKeyDown() ? inWorldTransmutation.getAltResult() : inWorldTransmutation.getResult();
+                            @Nullable BlockState out = minecraft.player.isShiftKeyDown() ? inWorldTransmutation.getAltResult() : inWorldTransmutation.getResult();
+                            if (out == null) continue;
                             renderStack = new ItemStack(out.getBlock());
                             break;
                         }
