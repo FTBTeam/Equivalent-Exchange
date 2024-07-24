@@ -8,13 +8,14 @@ import net.creeperhost.equivalentexchange.init.ModSounds;
 import net.creeperhost.equivalentexchange.items.interfaces.IActionItem;
 import net.creeperhost.equivalentexchange.items.interfaces.IChargeableItem;
 import net.creeperhost.equivalentexchange.items.interfaces.IOverlayItem;
+import net.creeperhost.polylib.helpers.VectorHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -22,11 +23,15 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 import java.util.Collections;
@@ -43,17 +48,41 @@ public class ItemPhilosophersStone extends Item implements IActionItem, IChargea
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext useOnContext)
+    public boolean blockIgnored(BlockState blockState)
     {
-        Level level = useOnContext.getLevel();
-        Player player = useOnContext.getPlayer();
-        if(player == null) return InteractionResult.FAIL;
-        ItemPhilosophersStone.getChanges(level, useOnContext.getClickedPos(), player, useOnContext.getClickedFace(), getCharge(useOnContext.getItemInHand())).forEach((blockPos, blockState) -> level.setBlock(blockPos, blockState, 3));
-        level.playSound(player, player.getX(), player.getY(), player.getZ(), ModSounds.TRANSMUTE.get(), SoundSource.PLAYERS, 1, 1);
-        return InteractionResult.SUCCESS;
+        return blockState.isAir();
     }
 
-    public static BlockState getTransmutation(BlockState blockState, boolean sneaking)
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
+    {
+        ItemStack itemstack = player.getItemInHand(hand);
+
+        int hitRange = 5;
+        BlockHitResult hitResult = VectorHelper.getLookingAt(player, ClipContext.Fluid.SOURCE_ONLY, hitRange);
+
+        if (hitResult.getType() == HitResult.Type.BLOCK)
+        {
+            BlockPos targetPos = hitResult.getBlockPos();
+            Direction targetFace = hitResult.getDirection();
+            BlockState targetState = level.getBlockState(targetPos);
+
+            boolean isSneaking = player.isShiftKeyDown();
+            BlockState result = getTransmutation(targetState, isSneaking);
+
+            if (result == null) return InteractionResultHolder.pass(itemstack);
+            Map<BlockPos, BlockState> changes = getChanges(level, targetPos, player, targetFace, getCharge(itemstack));
+            changes.forEach((blockPos, blockState) -> level.setBlock(blockPos, blockState, 3));
+            level.playSound(player, player.getX(), player.getY(), player.getZ(), ModSounds.TRANSMUTE.get(), SoundSource.PLAYERS, 1, 1);
+            return InteractionResultHolder.success(itemstack);
+        }
+        // Quite possible, in the future, we might:
+        // else if (hitResult.getType() == HitResult.Type.ENTITY) {}
+        // else if (hitResult.getType() == HitResult.Type.MISS) {}
+        return InteractionResultHolder.pass(itemstack);
+    }
+
+    public static @Nullable BlockState getTransmutation(BlockState blockState, boolean sneaking)
     {
         for (InWorldTransmutation inWorldTransmutationRecipe : EquivalentExchangeAPI.IN_WORLD_TRANSMUTATION_RECIPES)
         {
@@ -69,7 +98,7 @@ public class ItemPhilosophersStone extends Item implements IActionItem, IChargea
     {
         BlockState targeted = level.getBlockState(pos);
         boolean isSneaking = player.isShiftKeyDown();
-        BlockState result = getTransmutation(targeted, isSneaking);
+        @Nullable BlockState result = getTransmutation(targeted, isSneaking);
         if (result == null)
         {
             return Collections.emptyMap();
@@ -96,11 +125,11 @@ public class ItemPhilosophersStone extends Item implements IActionItem, IChargea
         Map<BlockPos, BlockState> changes = new HashMap<>();
         Block targetBlock = targeted.getBlock();
 
-        stream.forEach(currentPos ->
-        {
+        stream.forEach(currentPos -> {
             BlockState state = level.getBlockState(currentPos);
             if (state.is(targetBlock))
             {
+                @Nullable
                 BlockState actualResult;
                 if (conversions.containsKey(state))
                 {
@@ -128,7 +157,7 @@ public class ItemPhilosophersStone extends Item implements IActionItem, IChargea
     @Override
     public void onActionKeyPressed(@NotNull ItemStack stack, @NotNull Player player, InteractionHand hand)
     {
-        if(!player.getCommandSenderWorld().isClientSide)
+        if (!player.getCommandSenderWorld().isClientSide)
         {
             player.openMenu(new ContainerProvider(stack));
         }
@@ -137,13 +166,15 @@ public class ItemPhilosophersStone extends Item implements IActionItem, IChargea
     @Override
     public void chargeKeyPressed(@NotNull ItemStack stack, @NotNull Player player, InteractionHand hand, boolean shiftKeyDown)
     {
-        if(!shiftKeyDown)
+        if (!shiftKeyDown)
         {
-            if(getCharge(stack) < maxCharge(stack)) setCharge(stack, getCharge(stack) + 1);
+            if (getCharge(stack) < maxCharge(stack))
+                setCharge(stack, getCharge(stack) + 1);
         }
         else
         {
-            if(getCharge(stack) > 0) setCharge(stack, getCharge(stack) - 1);
+            if (getCharge(stack) > 0)
+                setCharge(stack, getCharge(stack) - 1);
         }
     }
 
@@ -151,7 +182,7 @@ public class ItemPhilosophersStone extends Item implements IActionItem, IChargea
     public int getCharge(@NotNull ItemStack stack)
     {
         CompoundTag tag = stack.getOrCreateTag();
-        if(!tag.contains("charge"))
+        if (!tag.contains("charge"))
         {
             tag.putInt("charge", 0);
         }
@@ -195,8 +226,7 @@ public class ItemPhilosophersStone extends Item implements IActionItem, IChargea
         return Color.WHITE;
     }
 
-    private record ContainerProvider(ItemStack stack) implements MenuProvider
-    {
+    private record ContainerProvider(ItemStack stack) implements MenuProvider {
         @NotNull
         @Override
         public AbstractContainerMenu createMenu(int windowId, @NotNull Inventory playerInventory, @NotNull Player player)

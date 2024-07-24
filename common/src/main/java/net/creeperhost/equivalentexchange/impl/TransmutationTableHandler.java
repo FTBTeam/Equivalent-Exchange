@@ -10,24 +10,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 public class TransmutationTableHandler
 {
-    private static final HashMap<String, TransmutationInventory> INVENTORIES = new HashMap<>();
+    private static final HashMap<UUID, TransmutationInventory> SERVER_INVENTORIES = new HashMap<>();
+    private static final HashMap<UUID, TransmutationInventory> CLIENT_INVENTORIES = new HashMap<>();
 
     public static TransmutationInventory getTransmutationInventory(Player player)
     {
-        if(!INVENTORIES.containsKey(player.getUUID().toString()))
+        HashMap<UUID, TransmutationInventory> inventoriesMap = player.level().isClientSide() ? CLIENT_INVENTORIES : SERVER_INVENTORIES;
+        if(!inventoriesMap.containsKey(player.getUUID()))
         {
             TransmutationInventory transmutationInventory = new TransmutationInventory(player);
-            INVENTORIES.put(player.getUUID().toString(), transmutationInventory);
+            inventoriesMap.put(player.getUUID(), transmutationInventory);
         }
-        return INVENTORIES.get(player.getUUID().toString());
+        return inventoriesMap.get(player.getUUID());
     }
 
     public static void updateInventory(Player player, TransmutationInventory transmutationInventory)
     {
-        INVENTORIES.put(player.getUUID().toString(), transmutationInventory);
+        HashMap<UUID, TransmutationInventory> inventoriesMap = player.level().isClientSide() ? CLIENT_INVENTORIES : SERVER_INVENTORIES;
+        inventoriesMap.put(player.getUUID(), transmutationInventory);
     }
 
     public static NonNullList<ItemStack> getTransmutationContent(int page, String search, ItemStack emcTarget, Player player)
@@ -62,6 +66,7 @@ public class TransmutationTableHandler
 
     public static void clear()
     {
-        INVENTORIES.clear();
+        SERVER_INVENTORIES.clear();
+        CLIENT_INVENTORIES.clear();
     }
 }

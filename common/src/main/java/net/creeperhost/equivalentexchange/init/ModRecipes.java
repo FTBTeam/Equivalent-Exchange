@@ -37,9 +37,17 @@ public class ModRecipes
         EquivalentExchangeAPI.registerInWorldTransmutationRecipe(Blocks.DIRT.defaultBlockState(), Blocks.SAND.defaultBlockState(), Blocks.COBBLESTONE.defaultBlockState());
         EquivalentExchangeAPI.registerInWorldTransmutationRecipe(Blocks.SAND.defaultBlockState(), Blocks.GRASS_BLOCK.defaultBlockState(), Blocks.COBBLESTONE.defaultBlockState());
         EquivalentExchangeAPI.registerInWorldTransmutationRecipe(Blocks.GRAVEL.defaultBlockState(), Blocks.SANDSTONE.defaultBlockState(), null);
+        EquivalentExchangeAPI.registerInWorldTransmutationRecipe(Blocks.SANDSTONE.defaultBlockState(), Blocks.GRAVEL.defaultBlockState(), null);
+
         EquivalentExchangeAPI.registerInWorldTransmutationRecipe(Blocks.WATER.defaultBlockState(), Blocks.ICE.defaultBlockState(), null);
+        EquivalentExchangeAPI.registerInWorldTransmutationRecipe(Blocks.ICE.defaultBlockState(), Blocks.WATER.defaultBlockState(), null);
+
         EquivalentExchangeAPI.registerInWorldTransmutationRecipe(Blocks.LAVA.defaultBlockState(), Blocks.OBSIDIAN.defaultBlockState(), null);
+        EquivalentExchangeAPI.registerInWorldTransmutationRecipe(Blocks.OBSIDIAN.defaultBlockState(), Blocks.LAVA.defaultBlockState(), null);
+
         EquivalentExchangeAPI.registerInWorldTransmutationRecipe(Blocks.MELON.defaultBlockState(), Blocks.PUMPKIN.defaultBlockState(), null);
+        EquivalentExchangeAPI.registerInWorldTransmutationRecipe(Blocks.PUMPKIN.defaultBlockState(), Blocks.MELON.defaultBlockState(), null);
+
         EquivalentExchangeAPI.registerInWorldTransmutationRecipe(Blocks.GRANITE.defaultBlockState(), Blocks.DIORITE.defaultBlockState(), Blocks.ANDESITE.defaultBlockState());
         EquivalentExchangeAPI.registerInWorldTransmutationRecipe(Blocks.DIORITE.defaultBlockState(), Blocks.ANDESITE.defaultBlockState(), Blocks.GRANITE.defaultBlockState());
         EquivalentExchangeAPI.registerInWorldTransmutationRecipe(Blocks.ANDESITE.defaultBlockState(), Blocks.GRANITE.defaultBlockState(), Blocks.DIORITE.defaultBlockState());
