@@ -10,10 +10,12 @@ import net.creeperhost.polylib.inventory.items.BlockInventory;
 import net.creeperhost.polylib.inventory.items.PolyInventoryBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class BlockEntityRelay extends EmcBlockEntity implements PolyInventoryBlock
 {
@@ -43,6 +45,8 @@ public abstract class BlockEntityRelay extends EmcBlockEntity implements PolyInv
             return 2;
         }
     };
+
+    public abstract double getTransferRate();
 
 
     public BlockEntityRelay(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState, double capacity)
@@ -74,7 +78,7 @@ public abstract class BlockEntityRelay extends EmcBlockEntity implements PolyInv
                 BlockPos blockPos = getBlockPos().relative(value);
                 if(level.getBlockEntity(blockPos) != null && level.getBlockEntity(blockPos) instanceof IEmcStorage iEmcStorage && iEmcStorage.canReceive())
                 {
-                    double removed = iEmcStorage.receiveEmc(Math.min(getStoredEmc(), 500), false);
+                    double removed = iEmcStorage.receiveEmc(Math.min(getStoredEmc(), getTransferRate()), false);
                     extractEmc(removed, false);
                 }
             }
@@ -90,7 +94,7 @@ public abstract class BlockEntityRelay extends EmcBlockEntity implements PolyInv
             {
                 if(itemKleinStar.getKleinStarStored(stack) > 0)
                 {
-                    double energyRemoved = receiveEmc(Math.min(itemKleinStar.getKleinStarStored(stack), 2500), false);
+                    double energyRemoved = receiveEmc(Math.min(itemKleinStar.getKleinStarStored(stack), getTransferRate()), false);
                     itemKleinStar.extractKleinStarEmc(stack, energyRemoved, false);
                 }
                 return;
@@ -116,7 +120,7 @@ public abstract class BlockEntityRelay extends EmcBlockEntity implements PolyInv
                 ItemStack stack = getContainer(Direction.UP).getItem(1);
                 if(iEmcItem.canReceive(stack))
                 {
-                    double energyRemoved = iEmcItem.receiveEmc(stack, Math.min(getStoredEmc(), 2500), false);
+                    double energyRemoved = iEmcItem.receiveEmc(stack, Math.min(getStoredEmc(), getTransferRate()), false);
                     extractEmc(energyRemoved, false);
                 }
             }
@@ -143,5 +147,18 @@ public abstract class BlockEntityRelay extends EmcBlockEntity implements PolyInv
                 }
             }
         }
+    }
+
+    @Override
+    public void saveAdditional(@NotNull CompoundTag compoundTag) {
+        super.saveAdditional(compoundTag);
+        simpleItemInventory.serialize(compoundTag);
+    }
+
+    @Override
+    public void load(@NotNull CompoundTag compoundTag) {
+        super.load(compoundTag);
+        getContainer(Direction.UP);
+        simpleItemInventory.deserialize(compoundTag);
     }
 }
