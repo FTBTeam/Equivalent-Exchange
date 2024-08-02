@@ -1,6 +1,7 @@
 package net.creeperhost.equivalentexchange.blockentities.relays;
 
 import net.creeperhost.equivalentexchange.Constants;
+import net.creeperhost.equivalentexchange.EquivalentExchange;
 import net.creeperhost.equivalentexchange.blockentities.prefab.BlockEntityRelay;
 import net.creeperhost.equivalentexchange.containers.relays.ContainerRelayMK3;
 import net.creeperhost.equivalentexchange.init.ModBlocks;
@@ -41,5 +42,10 @@ public class BlockEntityRelayMK3 extends BlockEntityRelay
     @Override
     public Container getContainer(@Nullable Direction side) {
         return simpleItemInventory == null ? this.simpleItemInventory = new BlockInventory(this, 22) : this.simpleItemInventory;
+    }
+
+    @Override
+    public double getTransferRate() {
+        return EquivalentExchange.CONFIG_DATA.RedMatterRelayTransferRate;
     }
 }

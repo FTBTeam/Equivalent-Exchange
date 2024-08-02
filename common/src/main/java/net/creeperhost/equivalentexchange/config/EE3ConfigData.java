@@ -52,4 +52,13 @@ public class EE3ConfigData extends ConfigData
 
     @Comment("Evertide Pedestal cost in EMC")
     public double EvertidePedestalCost = 1000;
+
+    @Comment("Basic Relay transfer rate")
+    public double BasicRelayTransferRate = 500;
+
+    @Comment("Dark matter Relay transfer rate")
+    public double DarkMatterRelayTransferRate = 2500;
+
+    @Comment("Red matter Relay transfer rate")
+    public double RedMatterRelayTransferRate = 5000;
 }

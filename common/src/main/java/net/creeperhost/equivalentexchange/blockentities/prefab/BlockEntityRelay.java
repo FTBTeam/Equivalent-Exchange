@@ -46,6 +46,8 @@ public abstract class BlockEntityRelay extends EmcBlockEntity implements PolyInv
         }
     };
 
+    public abstract double getTransferRate();
+
 
     public BlockEntityRelay(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState, double capacity)
     {
@@ -76,7 +78,7 @@ public abstract class BlockEntityRelay extends EmcBlockEntity implements PolyInv
                 BlockPos blockPos = getBlockPos().relative(value);
                 if(level.getBlockEntity(blockPos) != null && level.getBlockEntity(blockPos) instanceof IEmcStorage iEmcStorage && iEmcStorage.canReceive())
                 {
-                    double removed = iEmcStorage.receiveEmc(Math.min(getStoredEmc(), 500), false);
+                    double removed = iEmcStorage.receiveEmc(Math.min(getStoredEmc(), getTransferRate()), false);
                     extractEmc(removed, false);
                 }
             }
@@ -92,7 +94,7 @@ public abstract class BlockEntityRelay extends EmcBlockEntity implements PolyInv
             {
                 if(itemKleinStar.getKleinStarStored(stack) > 0)
                 {
-                    double energyRemoved = receiveEmc(Math.min(itemKleinStar.getKleinStarStored(stack), 2500), false);
+                    double energyRemoved = receiveEmc(Math.min(itemKleinStar.getKleinStarStored(stack), getTransferRate()), false);
                     itemKleinStar.extractKleinStarEmc(stack, energyRemoved, false);
                 }
                 return;
@@ -118,7 +120,7 @@ public abstract class BlockEntityRelay extends EmcBlockEntity implements PolyInv
                 ItemStack stack = getContainer(Direction.UP).getItem(1);
                 if(iEmcItem.canReceive(stack))
                 {
-                    double energyRemoved = iEmcItem.receiveEmc(stack, Math.min(getStoredEmc(), 2500), false);
+                    double energyRemoved = iEmcItem.receiveEmc(stack, Math.min(getStoredEmc(), getTransferRate()), false);
                     extractEmc(energyRemoved, false);
                 }
             }
