@@ -10,10 +10,12 @@ import net.creeperhost.polylib.inventory.items.BlockInventory;
 import net.creeperhost.polylib.inventory.items.PolyInventoryBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class BlockEntityRelay extends EmcBlockEntity implements PolyInventoryBlock
 {
@@ -143,5 +145,18 @@ public abstract class BlockEntityRelay extends EmcBlockEntity implements PolyInv
                 }
             }
         }
+    }
+
+    @Override
+    public void saveAdditional(@NotNull CompoundTag compoundTag) {
+        super.saveAdditional(compoundTag);
+        simpleItemInventory.serialize(compoundTag);
+    }
+
+    @Override
+    public void load(@NotNull CompoundTag compoundTag) {
+        super.load(compoundTag);
+        getContainer(Direction.UP);
+        simpleItemInventory.deserialize(compoundTag);
     }
 }
