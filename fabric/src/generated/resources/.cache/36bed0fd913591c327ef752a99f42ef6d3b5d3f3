@@ -1,4 +1,4 @@
-// 1.20.4	2024-06-07T17:26:51.6132597	Equivalent Exchange 4/Recipes
+// 1.20.4	2024-08-11T10:54:56.3508354	Equivalent Exchange 4/Recipes
 50d6acb945ecbd0b7fa9ff50ad192056ea08b7c8 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\recipes\alchemical_coal.json
 3bd0f4c01e19ffbb641b9d0e8e8601ae37fa5af3 ..\..\..\..\common\src\generated\resources\assets\data\equivalentexchange\advancements\recipes\misc\pink_alchemical_bag.json
 5c2895941abc8db597e2726758c582ca6e9275a2 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\recipes\basic_collector.json
@@ -25,6 +25,7 @@ fd91e0c5a76e9b762a020afc1db8815ee1e57134 ..\..\..\..\common\src\generated\resour
 e6c7effe8cd30c7eb5405ad09395f441051b4323 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\recipes\basic_relay.json
 1cf11769b1a6a7995a1999f1c6dec13308a1c292 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\recipes\dark_matter_relay.json
 297546fd0449d8b23b221c780eb2c379a7a4ebd0 ..\..\..\..\common\src\generated\resources\assets\data\equivalentexchange\advancements\recipes\misc\red_matter_block.json
+bbae1716ed87444effe83958ea1e279817a88620 ..\..\..\..\common\src\generated\resources\assets\data\equivalentexchange\advancements\recipes\tools\time_watch.json
 75bc447fce679b59dbd41ded213a390f9975d35a ..\..\..\..\common\src\generated\resources\assets\data\equivalentexchange\advancements\recipes\tools\life_stone.json
 8dba23e018f04aedcf39288cfc9b9b1c0f673d69 ..\..\..\..\common\src\generated\resources\assets\data\equivalentexchange\advancements\recipes\tools\dm_shovel.json
 e9eb80ff403a5c8c83cc40f19532b0f5b73ac4cc ..\..\..\..\common\src\generated\resources\assets\data\equivalentexchange\advancements\recipes\misc\iron_band.json
@@ -88,6 +89,7 @@ f9beeb5d28288c2eefe0429d8a84a537ceb2971d ..\..\..\..\common\src\generated\resour
 c9e5081f67f456ea4e59c59497d380f181e33147 ..\..\..\..\common\src\generated\resources\assets\data\equivalentexchange\advancements\recipes\misc\green_alchemical_bag.json
 f46c81352660eb79113fd598552d5ad6fa1c90d1 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\recipes\black_alchemical_bag.json
 34c2f3df87bedaaf86b36e690057d6a038221277 ..\..\..\..\common\src\generated\resources\assets\data\equivalentexchange\advancements\recipes\tools\rm_shears.json
+af584b5738a9f7a900ac7595d954f0b97b223c40 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\recipes\time_watch.json
 6b8ba93d35265d5c4b1f844d5eef65e4da0bef8c ..\..\..\..\common\src\generated\resources\data\equivalentexchange\recipes\red_matter_relay.json
 8f18f5cd3ea5a7e666cb758e95f15ea3d4a3f8ce ..\..\..\..\common\src\generated\resources\data\equivalentexchange\recipes\rm_chest.json
 0e51485fccb933d0a966c589d0930a90327c4b47 ..\..\..\..\common\src\generated\resources\assets\data\equivalentexchange\advancements\recipes\tools\mind_stone.json

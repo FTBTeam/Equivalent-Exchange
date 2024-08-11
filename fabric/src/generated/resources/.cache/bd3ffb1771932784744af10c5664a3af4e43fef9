@@ -1,2 +1,4 @@
-// 1.20.4	2024-06-07T17:26:51.6132597	Equivalent Exchange 4/Tags for minecraft:block
-9711ae391f9094f459baa819a0c20b2ec24f35a6 ..\..\..\..\common\src\generated\resources\data\minecraft\tags\blocks\mineable\pickaxe.json
+// 1.20.4	2024-08-11T10:54:56.3508354	Equivalent Exchange 4/Tags for minecraft:block
+3cc51b3c829886f369e23b68f8b0896e13886063 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\tags\blocks\watch_blacklist.json
+b648de5542c37e9374dbc1174f75773f102b9138 ..\..\..\..\common\src\generated\resources\data\minecraft\tags\blocks\mineable\pickaxe.json
+a4e379ddc6bcf8ecb99aa6f20351a2226da7f0cd ..\..\..\..\common\src\generated\resources\data\equivalentexchange\tags\blocks\watch_whitelist.json

@@ -4,3 +4,10 @@ accessible field net/minecraft/world/item/Item craftingRemainingItem Lnet/minecr
 mutable field net/minecraft/world/item/Item craftingRemainingItem Lnet/minecraft/world/item/Item;
 
 accessible method net/minecraft/world/entity/item/PrimedTnt explode ()V
+
+accessible field net/minecraft/world/level/chunk/LevelChunk tickersInLevel Ljava/util/Map;
+
+accessible field net/minecraft/world/level/chunk/LevelChunk$RebindableTickingBlockEntityWrapper ticker Lnet/minecraft/world/level/block/entity/TickingBlockEntity;
+accessible method net/minecraft/world/level/chunk/LevelChunk isTicking (Lnet/minecraft/core/BlockPos;)Z
+accessible class net/minecraft/world/level/chunk/LevelChunk$BoundTickingBlockEntity
+accessible field net/minecraft/world/level/chunk/LevelChunk$BoundTickingBlockEntity ticker Lnet/minecraft/world/level/block/entity/BlockEntityTicker;

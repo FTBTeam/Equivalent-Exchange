@@ -1,4 +1,4 @@
-// 1.20.4	2024-06-07T17:26:51.6222609	Equivalent Exchange 4/Model Definitions
+// 1.20.4	2024-08-11T10:54:56.3563731	Equivalent Exchange 4/Model Definitions
 6ff101534b5bcec4388660e77e5823fd17172743 ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\gray_alchemical_bag.json
 591b211965323f64e9f68eefc9173129d833e21c ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\block\mobius_fuel_block.json
 7cee8d6d3e7bc1dd06e535502bc5ccea98cc28be ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\mobius_fuel_block.json
@@ -24,8 +24,8 @@ cf63f77b494ac2f2a12e6e54bf5e19e0bbe5fcfd ..\..\..\..\common\src\generated\resour
 3c4ba7406575cfb6fe2e1be97679ea0a59265865 ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\rm_feet.json
 a49ac4b70dc63afd22d9b7816789e6b13c64d9ae ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\dark_matter_block.json
 8a2081e2af0ee8e03e2f4bac9e56ad35973451cb ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\brown_alchemical_bag.json
-018344b17ca859e1be2f24864bedd2ce150ad811 ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\high_diving_rod.json
 778d66c949d2604d800b855752019db158f7e809 ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\dm_shovel.json
+018344b17ca859e1be2f24864bedd2ce150ad811 ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\high_diving_rod.json
 5d60b72ae5b15fa65e62e0d5cec74b19040dda3a ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\mobius_fuel.json
 940f7dcbbaf629d51374512fcf1c7bacff9bb62f ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\blockstates\alchemical_coal_block.json
 a245cf6a4350ebd2a49553bf87203de1781d94c9 ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\aeternalis_fuel_block.json
@@ -65,8 +65,8 @@ e9b3614165155fb0a1b599a2233e441bc132fd0b ..\..\..\..\common\src\generated\resour
 ba4f7feadb08575e235098dc83ab514f43fffcce ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\rm_axe.json
 54293d0a747fed676a028159921f6767eeb71ff4 ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\rm_hoe.json
 dc38b93b809c84fd1c968aeb598a86a464f1074a ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\covalence_dust_medium.json
-dfcb0fab07a0e9a28bb4e6df263b128456f606fc ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\black_alchemical_bag.json
 0a0a2b6a2d16d280e90ccc0dea7fb85efe4cac00 ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\rm_pickaxe.json
+dfcb0fab07a0e9a28bb4e6df263b128456f606fc ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\black_alchemical_bag.json
 0dfb7f7cd50291d864d8491507288e976f7f01a2 ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\dm_legs.json
 7eb06a09951cbdcb13be846e46ce591cbdb6a260 ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\covalence_dust_high.json
 93242a2e68114f082fd818f2374508005059d501 ..\..\..\..\common\src\generated\resources\assets\equivalentexchange\models\item\red_matter.json

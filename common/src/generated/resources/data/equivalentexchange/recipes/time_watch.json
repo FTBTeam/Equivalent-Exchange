@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:clock"
+    },
+    "D": {
+      "item": "equivalentexchange:dark_matter"
+    },
+    "G": {
+      "item": "minecraft:glowstone"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "pattern": [
+    "DGD",
+    "OCO",
+    "DGD"
+  ],
+  "result": {
+    "item": "equivalentexchange:time_watch"
+  }
+}

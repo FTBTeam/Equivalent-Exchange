@@ -1,4 +1,4 @@
-// 1.20.4	2024-06-07T17:26:51.621263	Equivalent Exchange 4/Block Loot Tables
+// 1.20.4	2024-08-11T10:54:56.3553727	Equivalent Exchange 4/Block Loot Tables
 f8a805a7812573b195b94ab54e0789c895b7f77a ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\basic_collector.json
 7dd8fcab101cc63a21c319e1ecfae7529e8e92b8 ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\mobius_fuel_block.json
 40f8f863e6e1cbc2fa3751190d54ce86b28d3bef ..\..\..\..\common\src\generated\resources\data\equivalentexchange\loot_tables\blocks\alchemical_coal_block.json

@@ -257,6 +257,16 @@ public class EERecipeGen
                 .define('W', Items.WATER_BUCKET)
                 .unlockedBy("has_matter", has(ModItems.MATTER.get(MatterTypes.DARK).get())), ModuleType.COMMON);
 
+        provider.add(ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.WATCH_OF_FLOWING_TIME.get())
+                .pattern("DGD")
+                .pattern("OCO")
+                .pattern("DGD")
+                .define('C', Items.CLOCK)
+                .define('D', ModItems.MATTER.get(MatterTypes.DARK).get())
+                .define('G', Items.GLOWSTONE)
+                .define('O', Items.OBSIDIAN)
+
+                .unlockedBy("has_matter", has(ModItems.MATTER.get(MatterTypes.DARK).get())), ModuleType.COMMON);
 
         addDarkMatterRecipes(provider);
         addRedMatterRecipes(provider);

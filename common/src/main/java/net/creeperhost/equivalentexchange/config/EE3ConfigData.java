@@ -61,4 +61,13 @@ public class EE3ConfigData extends ConfigData
 
     @Comment("Red matter Relay transfer rate")
     public double RedMatterRelayTransferRate = 5000;
+
+    @Comment("Watch of flowing time enabled")
+    public boolean WatchFlowingTimeEnabled = true;
+
+    @Comment("Watch of flowing time will only speed up whitelisted block entities")
+    public boolean WatchOfFlowingTimeWhitelistMode = true;
+
+    @Comment("Watch of flowing time min TPS, If the servers TPS is lower than this value the watch will not function")
+    public double WatchOfFlowingTimeMinTps = 15;
 }

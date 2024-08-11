@@ -20,6 +20,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 
 public class EEDataGen implements DataGeneratorEntrypoint
 {
@@ -46,6 +47,17 @@ public class EEDataGen implements DataGeneratorEntrypoint
         {
             PolyBlockTagProvider blockTagProvider = new PolyBlockTagProvider(output, registriesFuture, ModuleType.COMMON);
             ModBlocks.BLOCKS.forEach(blockRegistrySupplier -> blockTagProvider.add(BlockTags.MINEABLE_WITH_PICKAXE, blockRegistrySupplier.get(), ModuleType.COMMON));
+            blockTagProvider.add(EquivalentExchangeTags.WATCH_WHITELIST, Blocks.FURNACE, ModuleType.COMMON);
+            blockTagProvider.add(EquivalentExchangeTags.WATCH_WHITELIST, Blocks.BLAST_FURNACE, ModuleType.COMMON);
+            blockTagProvider.add(EquivalentExchangeTags.WATCH_WHITELIST, Blocks.SMOKER, ModuleType.COMMON);
+            blockTagProvider.add(EquivalentExchangeTags.WATCH_WHITELIST, Blocks.CAMPFIRE, ModuleType.COMMON);
+
+            ModBlocks.COLLECTORS.forEach((collectorType, blockSupplier) -> blockTagProvider.add(EquivalentExchangeTags.WATCH_WHITELIST, blockSupplier.get(), ModuleType.COMMON));
+            ModBlocks.RELAYS.forEach((relayTypes, blockSupplier) -> blockTagProvider.add(EquivalentExchangeTags.WATCH_WHITELIST, blockSupplier.get(), ModuleType.COMMON));
+            blockTagProvider.add(EquivalentExchangeTags.WATCH_WHITELIST, ModBlocks.CONDENSER.get(), ModuleType.COMMON);
+
+            blockTagProvider.add(EquivalentExchangeTags.WATCH_BLACKLIST, ModBlocks.DM_PEDESTAL.get(), ModuleType.COMMON);
+
             return blockTagProvider;
         });
 

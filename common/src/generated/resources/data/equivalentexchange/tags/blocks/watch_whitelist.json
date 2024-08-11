@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "equivalentexchange:condenser",
+    "equivalentexchange:basic_collector",
+    "equivalentexchange:dark_matter_collector",
+    "equivalentexchange:red_matter_collector",
+    "equivalentexchange:basic_relay",
+    "equivalentexchange:dark_matter_relay",
+    "equivalentexchange:red_matter_relay",
+    "minecraft:furnace",
+    "minecraft:blast_furnace",
+    "minecraft:smoker",
+    "minecraft:campfire"
+  ]
+}

@@ -1,3 +1,10 @@
+## 1.0.12
+- Implemented Watch of flowing time 
+- Added Watch of flowing time recipe
+- Added Config to disable watch of flowing time
+- Added watch_whitelist block tag
+- Added watch_blacklist block tag
+
 ## 1.0.9
 
 ### Fixed

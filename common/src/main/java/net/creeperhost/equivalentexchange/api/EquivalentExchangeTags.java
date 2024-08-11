@@ -13,6 +13,8 @@ public class EquivalentExchangeTags
     public static TagKey<Item> COVALENCE_DUST = TagKey.create(Registries.ITEM, new ResourceLocation("equivalentexchange", "covalence_dust"));
     public static TagKey<Block> NEEDS_DARK_MATTER_TOOL = TagKey.create(Registries.BLOCK, new ResourceLocation("equivalentexchange", "needs_dark_matter_tools"));
     public static TagKey<Block> NEEDS_RED_MATTER_TOOL = TagKey.create(Registries.BLOCK, new ResourceLocation("equivalentexchange", "needs_red_matter_tools"));
+    public static TagKey<Block> WATCH_WHITELIST = TagKey.create(Registries.BLOCK, new ResourceLocation("equivalentexchange", "watch_whitelist"));
+    public static TagKey<Block> WATCH_BLACKLIST = TagKey.create(Registries.BLOCK, new ResourceLocation("equivalentexchange", "watch_blacklist"));
 
 
     public static boolean isBlacklisted(ItemStack stack)
