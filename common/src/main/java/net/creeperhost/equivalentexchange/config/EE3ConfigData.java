@@ -68,6 +68,6 @@ public class EE3ConfigData extends ConfigData
     @Comment("Watch of flowing time will only speed up whitelisted block entities")
     public boolean WatchOfFlowingTimeWhitelistMode = true;
 
-    @Comment("Watch of flowing time min TPS, If the servers TPS is lower than this value the watch will not function")
+    @Comment("Watch of flowing time min TPS, If the server TPS drops below this threshold, disable the watch of flowing time")
     public double WatchOfFlowingTimeMinTps = 15;
 }
