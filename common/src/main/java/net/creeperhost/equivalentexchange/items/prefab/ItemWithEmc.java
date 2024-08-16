@@ -95,7 +95,9 @@ public class ItemWithEmc extends Item implements IEmcItem
     @Override
     public double getStoredEmc(ItemStack stack)
     {
-        return stack.getOrCreateTag().getDouble("emc");
+        if(!stack.hasTag()) return 0;
+        if(!stack.getTag().contains("emc")) return 0;
+        return stack.getTag().getDouble("emc");
     }
 
     @Override
